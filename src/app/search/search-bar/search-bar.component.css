@@ -1,0 +1,22 @@
+.form-inline .form-group{
+  display: inline-block;
+  text-align: left;
+
+}
+.form-inline .form-group label{
+  color:grey;
+  font-size: .8rem;
+}
+
+.form-inline {
+  width: 100%;
+  align-items:flex-end;
+}
+
+.card{
+  padding: 10px;
+  vertical-align: bottom;
+}
+.btn-search{
+  margin-bottom: 0px !important;
+}

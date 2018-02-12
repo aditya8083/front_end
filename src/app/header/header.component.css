@@ -1,0 +1,13 @@
+
+.navbar-brand {
+  padding: 0;
+}
+.navbar-brand img {
+  height: 2.2rem;
+  padding: 0px;
+  width: auto;
+}
+
+nav{
+  background-color: transparent !important;
+}

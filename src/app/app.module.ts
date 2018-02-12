@@ -1,18 +1,69 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import {BrowserModule} from '@angular/platform-browser';
+import {NgModule} from '@angular/core';
 
 
-import { AppComponent } from './app.component';
+import {AppComponent} from './app.component';
+import {HeaderComponent} from './header/header.component';
+import {SearchComponent} from './search/search.component';
+import {FlightDetailsComponent} from './flight-details/flight-details.component';
+import {ReactiveFormsModule} from '@angular/forms';
+import {BookingHistoryComponent} from './booking-history/booking-history.component';
+import {UserProfileComponent} from './user-profile/user-profile.component';
+import {HttpClientModule} from '@angular/common/http';
+import {SearchResultComponent} from './search/search-result/search-result.component';
+import {SearchBarComponent} from './search/search-bar/search-bar.component';
+import {SearchService} from './search/search.service';
+import {NoopAnimationsModule} from '@angular/platform-browser/animations';
+import {MatAutocompleteModule, MatButtonModule, MatButtonToggleModule, MatCardModule, MatCheckboxModule, MatDatepickerModule, MatDividerModule, MatInputModule, MatNativeDateModule, MatSelectModule, MatStepperModule, MatTableModule, MatTabsModule} from '@angular/material';
+import {AuthComponent} from './auth/auth.component';
+import {RouterModule, Routes} from '@angular/router';
+import { FlightBookingContainerComponent } from './flight-booking-container/flight-booking-container.component';
+import {PassengerDetailsComponent} from './flight-booking-container/passenger-details/passenger-details.component';
+import {FlightBookingService} from './flight-booking-container/flight.booking.service';
 
+
+const appRoutes: Routes = [
+  {path: '', component: SearchComponent},
+  {path: 'booking/flight', component: FlightBookingContainerComponent}
+];
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    HeaderComponent,
+    SearchComponent,
+    FlightDetailsComponent,
+    BookingHistoryComponent,
+    UserProfileComponent,
+    SearchResultComponent,
+    SearchBarComponent,
+    AuthComponent,
+    FlightBookingContainerComponent,
+    PassengerDetailsComponent,
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    ReactiveFormsModule,
+    HttpClientModule,
+    NoopAnimationsModule,
+    MatButtonModule,
+    MatCheckboxModule,
+    MatAutocompleteModule,
+    MatInputModule,
+    MatCheckboxModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatButtonToggleModule,
+    MatCardModule,
+    MatTabsModule,
+    RouterModule.forRoot(appRoutes),
+    MatStepperModule,
+    MatSelectModule,
+    MatDividerModule,
+    MatTableModule
   ],
-  providers: [],
+  providers: [SearchService, FlightBookingService],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}

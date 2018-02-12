@@ -1,0 +1,67 @@
+<!--<ul class="nav nav-tabs">
+  <li class="nav-item">
+    <a [ngClass]="{'nav-link': true, 'active': tabSelected == tabs.FLIGHT_DETAILS}" href="#"
+       (click)="tabSelected = tabs.FLIGHT_DETAILS">Flight details</a>
+  </li>
+  <li class="nav-item">
+    <a [ngClass]="{'nav-link': true, 'active': tabSelected == tabs.FARE_DETAILS}" href="#"
+       (click)="tabSelected = tabs.FARE_DETAILS" href="#">Fare details</a>
+  </li>
+  <li class="nav-item">
+    <a [ngClass]="{'nav-link': true, 'active': tabSelected == tabs.BAGGAGE_DETAILS}" href="#"
+       (click)="tabSelected = tabs.BAGGAGE_DETAILS" href="#">Baggage details</a>
+  </li>
+  <li class="nav-item">
+    <a [ngClass]="{'nav-link': true, 'active': tabSelected == tabs.CANCELLATION_FEE}" href="#"
+       (click)="tabSelected = tabs.CANCELLATION_FEE" href="#">Cancellation fee</a>
+  </li>
+  <li class="nav-item">
+    <a [ngClass]="{'nav-link': true, 'active': tabSelected == tabs.DATE_CHANGE_FEE}" href="#"
+       (click)="tabSelected = tabs.DATE_CHANGE_FEE" href="#">Date change fee</a>
+  </li>
+</ul>
+
+<div *ngIf="tabSelected == tabs.FLIGHT_DETAILS" #childFlightDetails>
+  <button class="btn btn-primary">Click me sir</button>
+</div>
+
+<div *ngIf="tabSelected == tabs.FARE_DETAILS" #childFlightDetails>
+  <button class="btn btn-primary">Punch me sir</button>
+</div>-->
+
+<div class="mt-2"></div>
+<mat-tab-group class="tab-group">
+  <mat-tab label="Flight details">
+    <div class="tab-content" #flightDetailContainer>
+    </div>
+  </mat-tab>
+  <mat-tab label="Fare details" >
+    <div class="tab-content" #fareDetailContainer>
+    </div>
+  </mat-tab>
+  <mat-tab label="Baggage details">
+    <div class="tab-content">
+      Baggage details will be displayed here...
+    </div>
+  </mat-tab>
+  <mat-tab label="Cancellation fee">
+    <div class="tab-content">
+      Cancellation fee details will be displayed here
+    </div>
+  </mat-tab>
+  <mat-tab label="Date change fee">
+    <div class="tab-content">
+      Date change fee details will be displayed here...
+    </div>
+  </mat-tab>
+
+</mat-tab-group>
+
+<div #flightDetailContent>
+  Flight details will be displayed here...
+</div>
+
+<div #fareDetailContent>
+  Fare details will be displayed here..
+</div>
+

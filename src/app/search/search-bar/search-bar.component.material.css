@@ -1,0 +1,45 @@
+.form-group{
+  display: inline-block;
+  margin: 10px 10px 0 10px;
+}
+
+
+.passenger-selector{
+  text-align: center;
+  position: absolute;
+  display: none;
+}
+
+.form-group:hover .passenger-selector{
+  display: block;
+}
+
+.passenger-selector .row{
+}
+
+.passenger-selector button{
+  width: 100%;
+  height: 100%;
+  border-radius: 0;
+}
+
+.passenger-selector input{
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  border-radius: 0;
+}
+
+.mat-checkbox-inner-container{
+  height: 10px !important;
+  width: 10px !important;
+}
+
+.toggle-button-container{
+  width: 100%;
+  text-align: left;
+}
+
+
+
+

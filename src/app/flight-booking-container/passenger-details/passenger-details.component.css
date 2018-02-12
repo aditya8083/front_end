@@ -1,0 +1,17 @@
+.left-container{
+  width: 100%;
+  text-align: left;
+}
+
+.small-font{
+  font-size: 13px;
+}
+
+.no-padding{
+  padding: 0;
+}
+
+mat-form-field{
+  margin: 0px 5px;
+  font-size: 14px;
+}

@@ -1,0 +1,154 @@
+<div [formGroup]="passengerDetails">
+  <div class="my-2">
+    <p>
+      Booking for flight : {{flightBookingService.currentBooking.flightId}}.
+    </p>
+  </div>
+  <div *ngFor="let i of passengerCountList" formArrayName="passengerBioFormArray">
+
+    <div style="padding-top: 20px">
+      <form [formGroupName]="i">
+
+        <div class="float-left" style="width: 100%;">
+          <div class="d-inline-block text-left" style="width: 100%;">
+            Passenger {{i+1}}
+            <div>
+              <mat-form-field style="width: 60px;">
+                <mat-select placeholder="Title" formControlName="title">
+                  <mat-option *ngFor="let title of titles" [value]="title">
+                    {{title}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+
+              <mat-form-field>
+                <input matInput placeholder="First Name" formControlName="firstName" required>
+              </mat-form-field>
+
+              <mat-form-field>
+                <input matInput placeholder="Middle Name" formControlName="middleName">
+              </mat-form-field>
+
+              <mat-form-field>
+                <input matInput placeholder="Last Name" formControlName="lastName" required>
+              </mat-form-field>
+            </div>
+
+
+            <div>
+              <mat-form-field>
+                <input matInput [matDatepicker]="dobpicker" (focus)="dobpicker.open()"
+                       placeholder="Date of birth" #dobField formControlName="dob">
+                <mat-datepicker-toggle matSuffix [for]="dobpicker"></mat-datepicker-toggle>
+                <mat-datepicker #dobpicker disabled="false"></mat-datepicker>
+              </mat-form-field>
+            </div>
+
+            <div>
+              <mat-form-field>
+                <mat-select placeholder="Gender" formControlName="gender">
+                  <mat-option *ngFor="let gender of genders" [value]="gender">
+                    {{gender}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+            <!--<mat-divider style="width: 80%;"></mat-divider>-->
+          </div>
+          <hr>
+        </div>
+      </form>
+    </div>
+
+  </div>
+
+
+  <div>
+    Contact Details
+    <br>
+    <div class="d-inline-block" style="text-align: left; width: 100%;" formGroupName="passengerContactDetailsGroup">
+
+      <div>
+        <mat-form-field>
+          <span matPrefix>+91 &nbsp;</span>
+          <input type="tel" matInput placeholder="Telephone" formControlName="telephoneNumber">
+        </mat-form-field>
+      </div>
+
+      <div>
+        <mat-form-field>
+          <span matPrefix>+91 &nbsp;</span>
+          <input type="tel" matInput placeholder="Mobile number" required formControlName="mobileNumber">
+        </mat-form-field>
+      </div>
+
+      <div>
+      <mat-form-field>
+      <input matInput placeholder="Email" formControlName="email">
+      <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
+      Please enter a valid email address
+      </mat-error>
+      <mat-error *ngIf="emailFormControl.hasError('required')">
+      Email is <strong>required</strong>
+      </mat-error>
+      </mat-form-field>
+      </div>
+
+    </div>
+  </div>
+
+  <hr>
+
+  <div class="my-2">
+    Seat Request
+    <div class="left-container">
+      <br>
+      <button mat-raised-button class="btn btn-primary">Select Seats</button>
+
+      <button mat-raised-button class="mx-2 btn btn-danger">Clear Seats</button>
+
+      <div class="col-md-4 no-padding my-2 small-font" *ngIf="savedSeating.length > 0">
+        <mat-table #table [dataSource]="savedSeating">
+
+          <!--- Note that these columns can be defined in any order.
+                The actual rendered columns are set as a property on the row definition" -->
+
+          <!-- Position Column -->
+          <ng-container matColumnDef="position">
+            <mat-header-cell *matHeaderCellDef> No.</mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{0}}</mat-cell>
+          </ng-container>
+
+          <!-- Name Column -->
+          <ng-container matColumnDef="name">
+            <mat-header-cell *matHeaderCellDef> Name</mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.passengerName}}</mat-cell>
+          </ng-container>
+
+          <!-- Weight Column -->
+          <ng-container matColumnDef="seat">
+            <mat-header-cell *matHeaderCellDef> Seat</mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.seatNumber}}</mat-cell>
+          </ng-container>
+
+          <!-- Symbol Column -->
+          <ng-container matColumnDef="charge">
+            <mat-header-cell *matHeaderCellDef> Charge</mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.charge}}</mat-cell>
+          </ng-container>
+
+          <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+          <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+        </mat-table>
+      </div>
+    </div>
+  </div>
+
+  <br>
+</div>
+<div class="mt-4 mb-2">
+  <button mat-raised-button class="mx-2 btn btn-danger" (click)="cancel()">Cancel</button>
+
+  <button mat-raised-button class="btn btn-primary" matStepperNext>Next</button>
+</div>
+

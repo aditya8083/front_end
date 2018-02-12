@@ -12,6 +12,7 @@ export class SearchResultComponent implements OnInit {
 
   displayDetails: boolean[] = [];
 
+
   constructor(public searchService: SearchService,
               private flightBookingService: FlightBookingService,
               private router: Router) {
@@ -27,6 +28,7 @@ export class SearchResultComponent implements OnInit {
     this.flightBookingService.passengers = this.searchService.passengers;
     console.log(this.searchService.passengers);
     console.log('Booking for ' + i);
+    this.flightBookingService.fetchFlightDetails();
     this.router.navigate(['/booking', 'flight']);
   }
 

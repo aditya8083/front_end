@@ -1,0 +1,31 @@
+<div class="alert alert-danger" *ngIf="!paymentInitialized">Unable to initialize payment service.</div>
+
+<div *ngIf="paymentInitialized">
+    <div class="col-md-6">
+      <mat-card>
+        <mat-form-field class="col-md-12">
+          <input matInput placeholder="Card Number" formControlName="firstName" required>
+        </mat-form-field>
+
+        <div>
+          <mat-form-field class="col-md-2">
+            <input matInput placeholder="Month" formControlName="firstName" required>
+          </mat-form-field>
+
+          <mat-form-field class="col-md-2">
+            <input matInput placeholder="Year" formControlName="firstName" required>
+          </mat-form-field>
+
+          <mat-form-field class="col-md-4 float-right">
+            <input matInput placeholder="CVV" formControlName="firstName" required>
+          </mat-form-field>
+        </div>
+
+      </mat-card>
+    </div>
+  <div class="my-2">
+    <button mat-raised-button class="btn-danger">Cancel</button>
+    <button mat-raised-button class="btn-success">Pay</button>
+  </div>
+
+</div>

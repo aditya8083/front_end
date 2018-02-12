@@ -22,6 +22,7 @@ import {PassengerDetailsComponent} from './flight-booking-container/passenger-de
 import {FlightBookingService} from './flight-booking-container/flight.booking.service';
 import { FlightBookingReviewComponent } from './flight-booking-container/flight-booking-review/flight-booking-review.component';
 import { FlightViewComponent } from './shared/flight-view/flight-view.component';
+import { PaymentComponent } from './payment/payment.component';
 
 
 const appRoutes: Routes = [
@@ -44,6 +45,7 @@ const appRoutes: Routes = [
     PassengerDetailsComponent,
     FlightBookingReviewComponent,
     FlightViewComponent,
+    PaymentComponent,
   ],
   imports: [
     BrowserModule,

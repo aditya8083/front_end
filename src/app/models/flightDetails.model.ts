@@ -1,4 +1,4 @@
-export interface FlightInfo {
+export interface FlightDetailsResult {
   flightId: string;
   origin: string;
   destination: string;
@@ -6,44 +6,37 @@ export interface FlightInfo {
   originDepartTime: string;
   destinationArrivalDate: string;
   destinationArrivalTime: string;
-  flightCode: string;
   flightName: string;
   flightNumber: string;
-  pricePerAdult: number;
-  baggageWeight: string;
-  transitVisaRequired: boolean;
+  seatRemain: string;
+  pricePerAdult: string;
+  pricePerChild: string;
+  pricePerInfant: string;
   refundable: boolean;
-  handBaggageFlight: boolean;
 }
 
-
-export interface SearchData {
-  flightResult: FlightInfo[][];
+export interface FlightDetailsResponseBody {
+  superPnr: string;
+  totalPrice: number;
+  detailResult: FlightDetailsResult[];
 }
 
-export interface SearchResponse {
+export interface FlightDetailsResponse {
   resCode: number;
   resMessage: string;
   interactionId: string;
   interactionType: string;
-  response: SearchData;
+  response: FlightDetailsResponseBody;
 }
 
-export interface SearchParams {
+export interface FlightDetailsRequest {
+  flightId: string;
   origin: string;
   destination: string;
   originDepartDate: string;
-  returnDate: string;
   adults: number;
   children: number;
   infants: number;
+  destinationArrivalDate: string;
   flightType: string;
 }
-
-export interface PassengerCount {
-  adult: number;
-  child: number;
-  infant: number;
-}
-
-

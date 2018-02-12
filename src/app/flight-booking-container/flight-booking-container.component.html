@@ -8,17 +8,14 @@
 
     <mat-step #tabReview>
       <ng-template matStepLabel>Review</ng-template>
-      <app-flight-booking-review></app-flight-booking-review>
+      <app-flight-booking-review (confirmed)="confirmed()"></app-flight-booking-review>
     </mat-step>
 
     <mat-step>
+
       <ng-template matStepLabel>Payment</ng-template>
       <mat-divider></mat-divider>
-      You are now done.
-      <div>
-        <button mat-button matStepperPrevious>Back</button>
-        <button mat-button (click)="stepper.reset()">Reset</button>
-      </div>
+        <app-payment></app-payment>
     </mat-step>
 
   </mat-horizontal-stepper>

@@ -1,5 +1,6 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {FlightBookingService} from '../flight.booking.service';
+import {Properties} from '../../shared/properties';
 
 @Component({
   selector: 'app-flight-booking-review',
@@ -10,7 +11,8 @@ export class FlightBookingReviewComponent implements OnInit {
 
 
   now;
-
+  currency = Properties.currency;
+  @Output('confirmed') confirmed = new EventEmitter<boolean>();
   // access form group from service
 
 
@@ -36,8 +38,22 @@ export class FlightBookingReviewComponent implements OnInit {
   }
 
   displayContactDetails() {
-    return this.flightBookingService.passengerDetailsFormGroup.value['passengerContactDetailsGroup'].email + '  ' +
+    return this.flightBookingService.passengerDetailsFormGroup.value['passengerContactDetailsGroup'].email + '   ' +
       this.flightBookingService.passengerDetailsFormGroup.value['passengerContactDetailsGroup'].telephoneNumber + '  ' +
       this.flightBookingService.passengerDetailsFormGroup.value['passengerContactDetailsGroup'].mobileNumber;
+  }
+
+  getTotalBookingPrice(): number {
+    let amount = 0;
+    for (const booking of this.flightBookingService.currentBooking) {
+      amount = amount + booking.pricePerAdult;
+    }
+    return amount;
+  }
+
+  confirm() {
+    this.flightBookingService.detailsReviewed = true;
+    this.confirmed.emit(true);
+
   }
 }

@@ -2,7 +2,8 @@ import {AfterViewInit, Component, ElementRef, OnInit, Renderer2, ViewChild} from
 import {FormBuilder, FormGroup} from '@angular/forms';
 import {FlightBookingService} from './flight.booking.service';
 import {Router} from '@angular/router';
-import {MatStep} from '@angular/material';
+import {MatStep, MatStepper} from '@angular/material';
+import {StepperSelectionEvent} from '@angular/cdk/stepper';
 
 @Component({
   selector: 'app-flight-booking-container',
@@ -11,11 +12,12 @@ import {MatStep} from '@angular/material';
 })
 export class FlightBookingContainerComponent implements OnInit, AfterViewInit {
 
-  isLinear = true;
+  isLinear = false;
   firstFormGroup: FormGroup;
   secondFormGroup: FormGroup;
+  @ViewChild('stepper') stepper: MatStepper;
   @ViewChild('tabPassengerDetails') tabPassengerDetails: MatStep;
-
+  @ViewChild('tabReview') tabReview: MatStep;
 
   constructor(private fb: FormBuilder,
               protected flightBookingService: FlightBookingService,
@@ -45,6 +47,16 @@ export class FlightBookingContainerComponent implements OnInit, AfterViewInit {
 
     // set step control of passenger detail tab as form group reference in service
     this.tabPassengerDetails.stepControl = this.flightBookingService.passengerDetailsFormGroup;
+
+
+  }
+
+  confirmed() {
+    // disable previous steppers
+    this.tabReview.editable = false;
+    this.tabPassengerDetails.editable = false;
+
+    // do more things maybe?
   }
 
 }

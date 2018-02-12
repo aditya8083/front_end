@@ -1,7 +1,10 @@
-<div [formGroup]="passengerDetails">
+<div [formGroup]="passengerDetailsFormGroup">
   <div class="my-2">
     <p>
-      Booking for flight : {{flightBookingService.currentBooking.flightId}}.
+      Booking for flight :
+      <span *ngFor="let booking of flightBookingService.currentBooking">
+      {{booking.flightId}} <br>
+    </span>
     </p>
   </div>
   <div *ngFor="let i of passengerCountList" formArrayName="passengerBioFormArray">
@@ -83,15 +86,15 @@
       </div>
 
       <div>
-      <mat-form-field>
-      <input matInput placeholder="Email" formControlName="email">
-      <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
-      Please enter a valid email address
-      </mat-error>
-      <mat-error *ngIf="emailFormControl.hasError('required')">
-      Email is <strong>required</strong>
-      </mat-error>
-      </mat-form-field>
+        <mat-form-field>
+          <input matInput placeholder="Email" formControlName="email" required>
+          <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
+            Please enter a valid email address
+          </mat-error>
+          <mat-error *ngIf="emailFormControl.hasError('required')">
+            Email is <strong>required</strong>
+          </mat-error>
+        </mat-form-field>
       </div>
 
     </div>
@@ -147,8 +150,8 @@
   <br>
 </div>
 <div class="mt-4 mb-2">
-  <button mat-raised-button class="mx-2 btn btn-danger" (click)="cancel()">Cancel</button>
+  <button mat-raised-button class="mx-2 btn btn-danger"  (click)="cancel()">Cancel</button>
 
-  <button mat-raised-button class="btn btn-primary" matStepperNext>Next</button>
+  <button mat-raised-button class="btn btn-primary" matStepperNext (click)="next()">Next</button>
 </div>
 

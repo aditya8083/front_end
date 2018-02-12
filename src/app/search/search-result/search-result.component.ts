@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {SearchService} from '../search.service';
 import {FlightBookingService} from '../../flight-booking-container/flight.booking.service';
 import {Router} from '@angular/router';
-
+//  for one way flights
 @Component({
   selector: 'app-search-result',
   templateUrl: './search-result.component.html',
@@ -22,7 +22,8 @@ export class SearchResultComponent implements OnInit {
 
   // communicating between services
   bookResult(i: number) {
-    this.flightBookingService.currentBooking = this.searchService.searchResultList[i];
+
+    this.flightBookingService.currentBooking = [this.searchService.searchResultList[0][i]];
     this.flightBookingService.passengers = this.searchService.passengers;
     console.log(this.searchService.passengers);
     console.log('Booking for ' + i);

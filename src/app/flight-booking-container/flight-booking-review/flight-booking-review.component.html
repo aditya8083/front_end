@@ -1,0 +1,36 @@
+<mat-divider></mat-divider>
+
+<div class="my-2">
+  Flight Details
+</div>
+<mat-card class="my-1 mx-2">
+  <div *ngFor="let flight of flightBookingService.currentBooking">
+    <app-flight-view [flight]="flight"></app-flight-view>
+  </div>
+</mat-card>
+
+<hr>
+<div class="my-2">
+  Passenger Details
+</div>
+
+<mat-list style="text-align: left">
+  <mat-list-item
+    *ngFor="let passengerBio of flightBookingService.passengerDetailsFormGroup.value['passengerBioFormArray']; let i = index">
+    <h4 mat-line><span class="mr-2">{{i + 1}}.</span>
+      {{passengerBio.title}} {{passengerBio.firstName}} {{passengerBio.middleName}} {{passengerBio.lastName}}
+     <small>{{passengerBio.gender}}</small>  <small>{{passengerBio.dob | date:'dd-MM-yy'}}</small>  </h4>
+  </mat-list-item>
+  <hr>
+
+  <h3 mat-subheader>Contact</h3>
+  <mat-list-item>
+    <h4 mat-line> {{displayContactDetails()}} </h4>
+  </mat-list-item>
+</mat-list>
+
+
+<div class="my-2">
+  <button mat-raised-button class="btn-danger" matStepperPrevious>Back</button>
+  <button mat-raised-button class="btn-primary" matStepperNext>Next</button>
+</div>

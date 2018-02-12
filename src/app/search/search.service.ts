@@ -1,13 +1,14 @@
-import {EventEmitter, Injectable} from '@angular/core';
+import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import 'rxjs/add/operator/map';
-import {OneWay, PassengerCount, SearchParams, SearchResponse} from './search.flight.model';
+import {FlightInfo, PassengerCount, SearchParams, SearchResponse} from './search.flight.model';
 import {ApiLinks} from '../shared/api-links';
+import {Utils} from '../shared/Utils';
 
 @Injectable()
 export class SearchService {
 
-  searchResultList: OneWay[] = [];
+  searchResultList: FlightInfo[][] = [];
   badStatusCode = false;
   message = '';
   loaded = true;
@@ -27,12 +28,12 @@ export class SearchService {
     const searchParams: SearchParams = {
       origin: origin,
       destination: destination,
-      originDepartDate: originDate.toISOString().slice(0, 10),
-      adults: 1,
-      children: 0,
+      originDepartDate: Utils.dateToISOString(originDate),
+      adults: this.passengers.adult,
+      children: this.passengers.child,
+      infants: this.passengers.infant,
       flightType: flightType,
-      destinationArrivalDate: originDate.toISOString().slice(0, 10),
-      infants: 0
+      returnDate: Utils.dateToISOString(returnDate)
     };
 
     url = ApiLinks.addParams(url, searchParams);
@@ -44,7 +45,7 @@ export class SearchService {
           this.badStatusCode = true;
           this.message = data.resMessage;
         } else {
-          this.searchResultList = data.response.oneWay;
+          this.searchResultList = data.response.flightResult;
         }
       },
       error2 => {
@@ -54,5 +55,6 @@ export class SearchService {
       });
 
   }
+
 
 }

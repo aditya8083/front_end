@@ -1,0 +1,40 @@
+<div class="row">
+  <div class="col-md-3">
+    <img src="airlinelogo.png" [alt]="flight.flightName"/>
+  </div>
+  <div class="col-md-2 d-inline-block">
+    <!--<div class="row">-->
+    <!--<small>Departure</small>-->
+    <!--</div>-->
+    <div>{{flight.originDepartTime}}</div>
+    <small>{{flight.originDepartDate}}</small>
+  </div>
+  <div class="col-md-2 d-inline-block">
+    <!--<div class="row">-->
+    <!--<small>Arrival</small>-->
+    <!--</div>-->
+    <div>
+      {{flight.destinationArrivalTime}}
+    </div>
+    <div>
+      <small>{{flight.destinationArrivalDate}}</small>
+    </div>
+
+  </div>
+  <div class="col-md-2">
+    <!--<div class="row">-->
+    <!--<small>Duration</small>-->
+    <!--</div>-->
+    <div>
+      {{'2h45m'}}
+    </div>
+    <div>
+      <small>
+        {{'1 stop(s)'}}
+      </small>
+    </div>
+  </div>
+  <div class="col-md-3 d-inline-block" style="position:relative; padding-top: 10px;">
+    <span name="price mt-2">INR : {{flight.pricePerAdult}}</span>
+  </div>
+</div>

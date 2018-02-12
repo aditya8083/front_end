@@ -1,6 +1,6 @@
 import {AfterViewInit, Component, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {SearchService} from './search.service';
-import {OneWay as OneWayFlightModel} from './search.flight.model';
+import {FlightInfo as OneWayFlightModel} from './search.flight.model';
 import {ActivatedRoute} from '@angular/router';
 import {Subscription} from 'rxjs/Subscription';
 

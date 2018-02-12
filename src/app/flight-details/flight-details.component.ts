@@ -1,5 +1,5 @@
 import {AfterViewInit, Component, ElementRef, Input, OnInit, Renderer2, ViewChild} from '@angular/core';
-import {OneWay} from '../search/search.flight.model';
+import {FlightInfo} from '../search/search.flight.model';
 
 @Component({
   selector: 'app-flight-details',
@@ -9,7 +9,7 @@ import {OneWay} from '../search/search.flight.model';
 export class FlightDetailsComponent implements OnInit {
 
 
-  @Input('flight') flight: OneWay;
+  @Input('flight') flight: FlightInfo;
   @ViewChild('flightDetailContainer') flightDetailContainer: ElementRef;
   @ViewChild('flightDetailContent') flightDetailContent: ElementRef;
   @ViewChild('fareDetailContainer') fareDetailContainer: ElementRef;

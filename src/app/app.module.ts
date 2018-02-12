@@ -14,12 +14,14 @@ import {SearchResultComponent} from './search/search-result/search-result.compon
 import {SearchBarComponent} from './search/search-bar/search-bar.component';
 import {SearchService} from './search/search.service';
 import {NoopAnimationsModule} from '@angular/platform-browser/animations';
-import {MatAutocompleteModule, MatButtonModule, MatButtonToggleModule, MatCardModule, MatCheckboxModule, MatDatepickerModule, MatDividerModule, MatInputModule, MatNativeDateModule, MatSelectModule, MatStepperModule, MatTableModule, MatTabsModule} from '@angular/material';
+import {MatAutocompleteModule, MatButtonModule, MatButtonToggleModule, MatCardModule, MatCheckboxModule, MatDatepickerModule, MatDividerModule, MatInputModule, MatListModule, MatNativeDateModule, MatSelectModule, MatStepperModule, MatTableModule, MatTabsModule} from '@angular/material';
 import {AuthComponent} from './auth/auth.component';
 import {RouterModule, Routes} from '@angular/router';
 import { FlightBookingContainerComponent } from './flight-booking-container/flight-booking-container.component';
 import {PassengerDetailsComponent} from './flight-booking-container/passenger-details/passenger-details.component';
 import {FlightBookingService} from './flight-booking-container/flight.booking.service';
+import { FlightBookingReviewComponent } from './flight-booking-container/flight-booking-review/flight-booking-review.component';
+import { FlightViewComponent } from './shared/flight-view/flight-view.component';
 
 
 const appRoutes: Routes = [
@@ -40,6 +42,8 @@ const appRoutes: Routes = [
     AuthComponent,
     FlightBookingContainerComponent,
     PassengerDetailsComponent,
+    FlightBookingReviewComponent,
+    FlightViewComponent,
   ],
   imports: [
     BrowserModule,
@@ -60,7 +64,8 @@ const appRoutes: Routes = [
     MatStepperModule,
     MatSelectModule,
     MatDividerModule,
-    MatTableModule
+    MatTableModule,
+    MatListModule
   ],
   providers: [SearchService, FlightBookingService],
   bootstrap: [AppComponent]

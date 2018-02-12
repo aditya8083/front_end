@@ -1,4 +1,4 @@
-export interface OneWay {
+export interface FlightInfo {
   flightId: string;
   origin: string;
   destination: string;
@@ -16,27 +16,9 @@ export interface OneWay {
   handBaggageFlight: boolean;
 }
 
-export interface RoundWay {
-  flightId: string;
-  origin: string;
-  destination: string;
-  originDepartDate: string;
-  originDepartTime: string;
-  destinationArrivalDate: string;
-  destinationArrivalTime: string;
-  flightCode: string;
-  flightName: string;
-  flightNumber: string;
-  pricePerAdult: string;
-  baggageWeight: string;
-  transitVisaRequired: boolean;
-  refundable: boolean;
-  handBaggageFlight: boolean;
-}
 
 export interface SearchData {
-  oneWay: OneWay[];
-  roundWay: RoundWay[];
+  flightResult: FlightInfo[][];
 }
 
 export interface SearchResponse {
@@ -51,14 +33,14 @@ export interface SearchParams {
   origin: string;
   destination: string;
   originDepartDate: string;
-  destinationArrivalDate: string;
+  returnDate: string;
   adults: number;
   children: number;
   infants: number;
   flightType: string;
 }
 
-export interface PassengerCount{
+export interface PassengerCount {
   adult: number;
   child: number;
   infant: number;

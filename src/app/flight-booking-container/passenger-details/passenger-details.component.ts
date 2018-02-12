@@ -17,21 +17,20 @@ export class PassengerDetailsComponent implements OnInit, OnDestroy {
   displayedColumns = ['position', 'name', 'seat', 'charge'];
   titles = ['Mr', 'Mrs', 'Ms', 'Dr', 'Lord', 'Lady', 'Rev', 'Prof', 'Capt', 'Sir'];
   genders = ['Male', 'Female', 'Other'];
-  passengerDetails: FormGroup;
+  passengerDetailsFormGroup: FormGroup;
+
 
   constructor(private fb: FormBuilder,
               public flightBookingService: FlightBookingService,
               private location: Location) {
-
   }
 
   ngOnInit() {
-    const passengerCountSum = this.flightBookingService.getPassengerCountSum();
-    this.passengerCountList = Array(passengerCountSum).fill(0).map((x, i) => i);
+    this.passengerCountList = this.flightBookingService.getPassengerCountList();
     this.savedSeating = savedSeating;
 
     // building complete form here
-    this.passengerDetails = this.fb.group({
+    this.passengerDetailsFormGroup = this.fb.group({
       passengerBioFormArray: this.fb.array([]),
       passengerContactDetailsGroup: this.fb.group({
         telephoneNumber: '',
@@ -39,12 +38,17 @@ export class PassengerDetailsComponent implements OnInit, OnDestroy {
         email: ['', [Validators.required, Validators.email]]
       })
     });
-
-    const passengerFormArray = this.passengerDetails.controls['passengerBioFormArray'] as FormArray;
-    for (let i = 0; i < passengerCountSum; i++) {
+    // adding passenger detail forms in FA
+    const passengerFormArray = this.passengerDetailsFormGroup.controls['passengerBioFormArray'] as FormArray;
+    for (let i = 0; i < this.passengerCountList.length; i++) {
       passengerFormArray.push(this.createPassengerBioFG());
     }
-    this.emailFormControl = <FormControl>(<FormGroup>this.passengerDetails.controls['passengerContactDetailsGroup']).controls['email'];
+    // need this reference for validation messages
+    this.emailFormControl = <FormControl>(<FormGroup>this.passengerDetailsFormGroup.controls['passengerContactDetailsGroup']).controls['email'];
+
+    // set form reference in service
+    this.flightBookingService.passengerDetailsFormGroup = this.passengerDetailsFormGroup;
+
   }
 
   createPassengerBioFG() {
@@ -68,12 +72,17 @@ export class PassengerDetailsComponent implements OnInit, OnDestroy {
 
 
   showMeDetails() {
-    console.log(this.passengerDetails.value);
+    console.log(this.passengerDetailsFormGroup.value);
   }
 
   cancel() {
     this.showMeDetails();
     this.location.back();
+  }
+
+  next() {
+    this.showMeDetails();
+    console.log(this.passengerDetailsFormGroup.status);
   }
 
 }

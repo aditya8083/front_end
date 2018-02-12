@@ -7,7 +7,7 @@
   }">
   {{ searchService.message }}
 </div>
-<mat-card *ngFor="let flight of searchService.searchResultList; let i = index" class="mb-2" style="padding-bottom: 10px;">
+<mat-card *ngFor="let flight of searchService.searchResultList[0]; let i = index" class="mb-2" style="padding-bottom: 10px;">
   <div class="row">
     <div class="col-md-3">
       <img src="airlinelogo.png" [alt]="flight.flightName"/>

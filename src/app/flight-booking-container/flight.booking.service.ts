@@ -1,23 +1,23 @@
 import {Injectable} from '@angular/core';
-import {OneWay, PassengerCount} from '../search/search.flight.model';
+import {FlightInfo, PassengerCount} from '../search/search.flight.model';
+import {FormGroup} from '@angular/forms';
 
 @Injectable()
 export class FlightBookingService {
-  currentBooking: OneWay;
+  currentBooking: FlightInfo[] = [];
   passengers: PassengerCount;
   passengerSum: number;
+  passengerDetailsFormGroup: FormGroup;
 
   constructor() {
-    console.log('flight booking service getting created');
   }
 
 
-  getPassengerCountSum() {
+  getPassengerCountList(): number[] {
     if (this.passengers == null) {
-      console.log('Invalid Booking Method');
-      console.log(this.passengers);
+      return [];
     } else {
-        return Object.values(this.passengers).reduce((a, b) => a + b, 0);
+        return Array(Object.values(this.passengers).reduce((a, b) => a + b, 0)).fill(0).map((x, i) => i);
     }
   }
 }

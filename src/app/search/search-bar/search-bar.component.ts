@@ -61,10 +61,10 @@ export class SearchBarComponent implements OnInit, OnDestroy {
   onSearchClicked(originDate: any, returnDate: any) {
     const origin = this.searchForm.get('origin').value;
     const destination = this.searchForm.get('destination').value;
-    console.log(this.searchForm.controls.originDate.value);
+    console.log('date value is: ' + this.searchForm.controls.originDate.value);
     originDate = new Date(Date.parse(originDate));
     returnDate = new Date(Date.parse(returnDate));
-    console.log(originDate);
+    console.log(originDate.toLocaleDateString());
     console.log('flight type is : ' + this.flightType.value);
     // set passenger information on search service so it could be transferred to booking service when needed.
     this.searchService.passengers = {adult: this.passengerAdultCount, child: this.passengerChildCount, infant: this.passengerInfantCount};

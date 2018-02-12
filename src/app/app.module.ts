@@ -23,6 +23,7 @@ import {FlightBookingService} from './flight-booking-container/flight.booking.se
 import { FlightBookingReviewComponent } from './flight-booking-container/flight-booking-review/flight-booking-review.component';
 import { FlightViewComponent } from './shared/flight-view/flight-view.component';
 import { PaymentComponent } from './payment/payment.component';
+import {FlightBookingResultComponent} from './flight-booking-result/flight-booking-result.component';
 
 
 const appRoutes: Routes = [
@@ -46,6 +47,7 @@ const appRoutes: Routes = [
     FlightBookingReviewComponent,
     FlightViewComponent,
     PaymentComponent,
+    FlightBookingResultComponent,
   ],
   imports: [
     BrowserModule,

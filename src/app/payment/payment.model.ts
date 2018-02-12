@@ -15,3 +15,12 @@ export interface PaymentRequest {
   paymentStatus: string;
   cardDetailsDTO: CardDetails;
 }
+
+
+export interface PaymentComponentInput {
+  superPnr: string;
+  amount?: string;
+  providerId: string;
+  customerId: string;
+}
+

@@ -1,15 +1,15 @@
 import { TestBed, inject } from '@angular/core/testing';
 
-import { BookingResultServiceService } from './booking-result-service.service';
+import { BookingResultService } from './booking-result-service.service';
 
-describe('BookingResultServiceService', () => {
+describe('BookingResultService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [BookingResultServiceService]
+      providers: [BookingResultService]
     });
   });
 
-  it('should be created', inject([BookingResultServiceService], (service: BookingResultServiceService) => {
+  it('should be created', inject([BookingResultService], (service: BookingResultService) => {
     expect(service).toBeTruthy();
   }));
 });

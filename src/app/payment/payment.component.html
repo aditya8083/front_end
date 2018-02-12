@@ -1,6 +1,8 @@
-<div class="alert alert-danger" *ngIf="!paymentInitialized">Unable to initialize payment service.</div>
+<div class="alert alert-danger" *ngIf="!paymentService.paymentInitialized">Unable to initialize payment service.</div>
 
-<div *ngIf="paymentInitialized">
+<div *ngIf="paymentService.paymentInitialized">
+
+  <h1>Booking for {{paymentService.paymentRequest.superPnr}}</h1>
     <div class="col-md-6">
       <mat-card>
         <mat-form-field class="col-md-12">
@@ -25,7 +27,7 @@
     </div>
   <div class="my-2">
     <button mat-raised-button class="btn-danger">Cancel</button>
-    <button mat-raised-button class="btn-success">Pay</button>
+    <button mat-raised-button class="btn-success" (click)="proceedPayment()">Pay</button>
   </div>
 
 </div>

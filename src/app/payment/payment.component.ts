@@ -1,5 +1,6 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
+import {PaymentService} from './payment.service';
 
 @Component({
   selector: 'app-payment',
@@ -8,19 +9,16 @@ import {Router} from '@angular/router';
 })
 export class PaymentComponent implements OnInit {
 
-  @Input('paymentRequest') paymentRequest: PaymentRequest;
-  paymentInitialized = false;
 
-  constructor(private router: Router) {
+  constructor(private router: Router,
+              protected paymentService: PaymentService) {
   }
 
   ngOnInit() {
-    if (this.paymentRequest == null) {
-      console.log('Unable to initialize payments');
-    } else {
-      this.paymentInitialized = true;
-    }
+
   }
 
+  proceedPayment() {
 
+  }
 }

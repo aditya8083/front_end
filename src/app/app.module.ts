@@ -24,6 +24,8 @@ import { FlightBookingReviewComponent } from './flight-booking-container/flight-
 import { FlightViewComponent } from './shared/flight-view/flight-view.component';
 import { PaymentComponent } from './payment/payment.component';
 import {FlightBookingResultComponent} from './flight-booking-result/flight-booking-result.component';
+import {PaymentService} from './payment/payment.service';
+import {BookingResultService} from './flight-booking-result/booking-result-service.service';
 
 
 const appRoutes: Routes = [
@@ -71,7 +73,7 @@ const appRoutes: Routes = [
     MatTableModule,
     MatListModule
   ],
-  providers: [SearchService, FlightBookingService],
+  providers: [SearchService, FlightBookingService, PaymentService, BookingResultService],
   bootstrap: [AppComponent]
 })
 export class AppModule {

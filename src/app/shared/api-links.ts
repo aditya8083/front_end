@@ -1,7 +1,14 @@
 export class ApiLinks {
-  public static searchBase = 'http://10.177.7.81:8082/flight/search';
-  public static flightDetailsBase = 'http://10.177.7.81:8082/flight/detail';
-  // public static searchBase = 'http://localhost:8081/booking/search/flight/test';
+  // public static searchBase = 'http://10.177.7.81:8083/flight/search';
+  // public static flightDetailsBase = 'http://10.177.7.81:8083/flight/detail';
+  // public static flightCreateBooking = 'http://10.177.7.81:8083/createBooking';
+  public static makePaymentUrl = 'http://10.177.7.81:8083/card/makePaymentUrl';
+
+
+  public static searchBase = 'http://demo4749284.mockable.io/flight/search';
+  public static flightDetailsBase = 'https://demo4749284.mockable.io/flight/detail';
+  public static flightCreateBooking = 'https://demo4749284.mockable.io/createBooking';
+
 
   public static addParams(url: string, map: Object) {
     if (Object.keys(map).length > 0) {

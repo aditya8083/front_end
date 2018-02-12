@@ -40,3 +40,22 @@ export interface FlightDetailsRequest {
   destinationArrivalDate: string;
   flightType: string;
 }
+
+export interface Passenger {
+  name: string;
+  age: string;
+}
+
+export interface PartialBookingRequest {
+  userId: string;
+  amount: number;
+  superPnr: string;
+  bookingStatus: string;
+  paymentId?: any;
+  paymentStatus: string;
+  bookingType: string;
+  bookingSource: string;
+  phoneNumber: string;
+  bookingEmail: string;
+  passengers: Passenger[];
+}

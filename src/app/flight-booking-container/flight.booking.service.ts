@@ -2,9 +2,8 @@ import {Injectable} from '@angular/core';
 import {FlightInfo, PassengerCount} from '../search/search.flight.model';
 import {FormGroup} from '@angular/forms';
 import {HttpClient} from '@angular/common/http';
-import {FlightDetailsRequest, FlightDetailsResponse} from '../models/flightDetails.model';
+import {FlightDetailsRequest, FlightDetailsResponse, PartialBookingRequest} from '../models/flightDetails.model';
 import {ApiLinks} from '../shared/api-links';
-import {Utils} from '../shared/Utils';
 
 @Injectable()
 export class FlightBookingService {
@@ -46,5 +45,37 @@ export class FlightBookingService {
       .subscribe(data => {
         this.flightDetailsResponse = <FlightDetailsResponse> data;
       });
+  }
+
+  createBooking() {
+
+    const passengerArray = [];
+    for (const passenger of this.passengerDetailsFormGroup.value['passengerBioFormArray']) {
+      passengerArray.push({
+        name : passenger.firstName + ' ' + passenger.lastName,
+        age: '20'
+      });
+    }
+    // create partial booking
+    const partialBookingRequest: PartialBookingRequest = {
+      phoneNumber: this.passengerDetailsFormGroup.value['passengerContactDetailsGroup'].mobileNumber,
+      bookingEmail: this.passengerDetailsFormGroup.value['passengerContactDetailsGroup'].email,
+      userId: this.passengerDetailsFormGroup.value['passengerContactDetailsGroup'].email,
+      amount: this.flightDetailsResponse.response.totalPrice,
+      superPnr: this.flightDetailsResponse.response.superPnr,
+      bookingStatus: 'PENDING',
+      paymentId: null,
+      bookingType: 'flight',
+      bookingSource: 'WEB',
+      passengers: passengerArray,
+      paymentStatus: 'PENDING'
+    };
+    const url = ApiLinks.addParams(ApiLinks.flightCreateBooking, partialBookingRequest);
+    this.httpClient.get(url)
+      .subscribe(
+        data => {console.log(data);
+        }
+      );
+
   }
 }

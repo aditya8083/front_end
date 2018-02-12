@@ -1,6 +1,8 @@
+///<reference path="../flight.booking.service.ts"/>
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {FlightBookingService} from '../flight.booking.service';
 import {Properties} from '../../shared/properties';
+import {PaymentService} from '../../payment/payment.service';
 
 @Component({
   selector: 'app-flight-booking-review',
@@ -12,11 +14,14 @@ export class FlightBookingReviewComponent implements OnInit {
 
   now;
   currency = Properties.currency;
+
+  // emitting this event so editing can be disabled
   @Output('confirmed') confirmed = new EventEmitter<boolean>();
   // access form group from service
 
 
-  constructor(protected flightBookingService: FlightBookingService) {
+  constructor(protected flightBookingService: FlightBookingService,
+              private paymentService: PaymentService) {
   }
 
   ngOnInit() {
@@ -55,5 +60,16 @@ export class FlightBookingReviewComponent implements OnInit {
     this.flightBookingService.detailsReviewed = true;
     this.confirmed.emit(true);
 
+    // create booking
+    this.flightBookingService.createBooking();
+
+    // send stuff to payment
+    this.paymentService.paymentInitialized = true;
+    this.paymentService.paymentRequest = {
+      superPnr: this.flightBookingService.flightDetailsResponse.response.superPnr,
+      customerId: this.flightBookingService.passengerDetailsFormGroup.value['passengerContactDetailsGroup'].email,
+      providerId: 'ABC'
+    };
+    console.log('initializing payment service');
   }
 }

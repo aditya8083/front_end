@@ -4,7 +4,7 @@
     <div style="padding-top: 20px">
       <form [formGroupName]="i">
 
-        <div class="float-left" style="width: 100%;">
+        <div class="float-left" style="width: 100%;margin-top: 50px;">
           <div class="d-inline-block text-left" style="width: 100%;">
             Passenger {{i+1}}
             <div>
@@ -60,17 +60,17 @@
     <br>
     <div class="d-inline-block" style="text-align: left; width: 100%;" formGroupName="passengerContactDetailsGroup">
 
-      <div>
+      <div style="display:none;">
         <mat-form-field>
           <span matPrefix>+91 &nbsp;</span>
-          <input type="tel" matInput placeholder="Telephone" formControlName="telephoneNumber">
+          <input type="tel"  matInput placeholder="Telephone" formControlName="telephoneNumber" >
         </mat-form-field>
       </div>
 
       <div>
         <mat-form-field>
           <span matPrefix>+91 &nbsp;</span>
-          <input type="tel" matInput placeholder="Mobile number" required formControlName="mobileNumber">
+          <input type="number" matInput placeholder="Mobile number" required formControlName="mobileNumber" maxlength="10">
         </mat-form-field>
       </div>
 

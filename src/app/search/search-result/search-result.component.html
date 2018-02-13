@@ -1,6 +1,6 @@
 <div style="margin-top:50px"></div>
 
-<div *ngIf=" searchService.badStatusCode" [ngClass]="{
+<div *ngIf="searchService.badStatusCode" [ngClass]="{
   alert: true,
   'alert-info': !searchService.badStatusCode,
   'alert-danger': searchService.badStatusCode
@@ -10,6 +10,9 @@
 <div style="text-align: center">
   <mat-spinner *ngIf="!searchService.loaded"></mat-spinner>
 </div>
+
+<h2 *ngIf="searchService.searchResultList.length > 0" >Flight Result </h2>
+
 <mat-card *ngFor="let flight of searchService.searchResultList[0]; let i = index" class="mb-2"
           style="padding-bottom: 10px;">
   <div class="row">

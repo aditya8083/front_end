@@ -39,6 +39,7 @@ export interface FlightDetailsRequest {
   infants: number;
   destinationArrivalDate: string;
   flightType: string;
+  doGenerate: boolean;
 }
 
 export interface Passenger {

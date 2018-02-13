@@ -1,6 +1,6 @@
 <div class="row">
   <div class="col-md-3">
-    <img src="airlinelogo.png" [alt]="flight.flightName"/>
+    <img [src]="getLogo(flight.flightName)" style="height: auto;" class="img-fluid" [alt]="flight.flightName"/>
   </div>
   <div class="col-md-2 d-inline-block">
     <!--<div class="row">-->

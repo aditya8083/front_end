@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {SearchService} from '../search.service';
 import {FlightBookingService} from '../../flight-booking-container/flight.booking.service';
 import {Router} from '@angular/router';
+import {Utils} from '../../shared/Utils';
 //  for one way flights
 @Component({
   selector: 'app-search-result',
@@ -30,6 +31,10 @@ export class SearchResultComponent implements OnInit {
     console.log('Booking for ' + i);
     // this.flightBookingService.fetchFlightDetails();
     this.router.navigate(['/booking', 'flight']);
+  }
+
+  getLogo(airline: string) {
+    return Utils.getLogo(airline);
   }
 
 }

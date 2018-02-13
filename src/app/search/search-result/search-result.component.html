@@ -17,7 +17,7 @@
           style="padding-bottom: 10px;">
   <div class="row">
     <div class="col-md-3">
-      <img src="airlinelogo.png" [alt]="flight.flightName"/>
+      <img [src]="getLogo(flight.flightName)" class="img-fluid" [alt]="flight.flightName"/>
     </div>
     <div class="col-md-2 d-inline-block">
       <!--<div class="row">-->
@@ -52,7 +52,7 @@
       </div>
     </div>
     <div class="col-md-3 d-inline-block" style="position:relative; padding-top: 10px;">
-      <span name="price mt-2">INR : {{flight.pricePerAdult}}</span>
+      <span name="price mt-2">INR : {{flight.totalPrice}}</span>
     </div>
   </div>
   <hr>

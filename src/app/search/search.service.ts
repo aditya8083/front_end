@@ -14,6 +14,7 @@ export class SearchService {
   message = '';
   loaded = true;
   passengers: PassengerCount;
+  lastSearchParams: SearchParams;
 
 
   constructor(private httpClient: HttpClient) {
@@ -37,6 +38,8 @@ export class SearchService {
       flightType: flightType,
       returnDate: Utils.dateToISOString(returnDate)
     };
+
+    this.lastSearchParams = searchParams;
 
     url = ApiLinks.addParams(url, searchParams);
     console.log('sending request to : ' + url);
@@ -68,7 +71,8 @@ export class SearchService {
       flightType: 'ONEWAY',
       origin: flight.origin,
       destinationArrivalDate: flight.destinationArrivalDate,
-      flightId: flight.flightId
+      flightId: flight.flightId,
+      doGenerate: false
     };
 
     const url = ApiLinks.addParams(ApiLinks.flightDetailsBase, flightDetailsRequest);

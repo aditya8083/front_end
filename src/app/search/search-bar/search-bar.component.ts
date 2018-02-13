@@ -56,6 +56,19 @@ export class SearchBarComponent implements OnInit, OnDestroy {
       .map(val => this.filter(val));
     this.filteredDestinationList = this.searchForm.controls.destination.valueChanges
       .map(val => this.filter(val));
+
+
+    // load last state of component
+    if (this.searchService.passengers) {
+      this.passengerAdultCount = this.searchService.passengers.adult;
+      this.passengerChildCount = this.searchService.passengers.child;
+      this.passengerInfantCount = this.searchService.passengers.infant;
+      this.searchForm.controls['origin'].setValue(this.searchService.lastSearchParams.origin);
+      this.searchForm.controls['destination'].setValue(this.searchService.lastSearchParams.destination);
+      this.searchForm.controls['originDate'].setValue(this.searchService.lastSearchParams.originDepartDate);
+      this.searchForm.controls['returnDate'].setValue(this.searchService.lastSearchParams.returnDate);
+    }
+
   }
 
   onSearchClicked(originDate: any, returnDate: any) {
@@ -94,6 +107,8 @@ export class SearchBarComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    // this.passengerCountSubscription.unsubscribe();
+    if (this.passengerCountSubscription) {
+      this.passengerCountSubscription.unsubscribe();
+    }
   }
 }

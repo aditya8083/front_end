@@ -2,6 +2,7 @@ import {Component, Input, OnInit} from '@angular/core';
 import {FlightInfo} from '../../search/search.flight.model';
 import {FlightDetailsResponse} from '../../models/flightDetails.model';
 import {FlightBookingService} from '../../flight-booking-container/flight.booking.service';
+import {Utils} from '../Utils';
 
 @Component({
   selector: 'app-flight-view',
@@ -18,6 +19,8 @@ export class FlightViewComponent implements OnInit {
   ngOnInit() {
   }
 
-
+  getLogo(airline: string) {
+    return Utils.getLogo(airline);
+  }
 
 }

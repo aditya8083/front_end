@@ -14,6 +14,7 @@ export interface FlightInfo {
   transitVisaRequired: boolean;
   refundable: boolean;
   handBaggageFlight: boolean;
+  totalPrice: boolean;
 }
 
 

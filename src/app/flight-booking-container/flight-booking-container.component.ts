@@ -35,10 +35,10 @@ export class FlightBookingContainerComponent implements OnInit, AfterViewInit {
 
 
     // if the path is accessed directly instead of through search results, then navigate back to homepage
-    // if (this.flightBookingService.currentBooking == null) {
-    //   console.log('Invalid Booking Attempt');
-    //   this.router.navigate(['']);
-    // }
+    if (this.flightBookingService.currentBooking == null) {
+      console.log('Invalid Booking Attempt');
+      this.router.navigate(['']);
+    }
 
     // fetch details for current flight.
     this.flightBookingService.fetchFlightDetails();

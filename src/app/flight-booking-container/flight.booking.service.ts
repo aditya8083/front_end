@@ -48,7 +48,8 @@ export class FlightBookingService {
       flightType: 'ONEWAY',
       origin: this.currentBooking[0].origin,
       destinationArrivalDate: this.currentBooking[0].destinationArrivalDate,
-      flightId: this.currentBooking[0].flightId
+      flightId: this.currentBooking[0].flightId,
+      doGenerate: true
     };
 
     const url = ApiLinks.addParams(ApiLinks.flightDetailsBase, flightDetailsRequest);

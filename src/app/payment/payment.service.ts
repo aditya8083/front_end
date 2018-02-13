@@ -26,12 +26,12 @@ export class PaymentService {
       cardDetailsDTO: cardDetails
     };
 
-    const url = ApiLinks.addParams(ApiLinks.makePaymentUrl, paymentRequest);
+    // const url = ApiLinks.addParams(ApiLinks.makePaymentUrl, paymentRequest);
 
     // call payment making service
 
-    // return this.httpClient.post(ApiLinks.makePaymentUrl, paymentRequest);
-    return this.httpClient.get(url);
+    return this.httpClient.post(ApiLinks.makePaymentUrl, paymentRequest);
+    // return this.httpClient.get(url);
   }
 
   reset() {

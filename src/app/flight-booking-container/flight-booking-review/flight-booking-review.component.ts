@@ -57,6 +57,7 @@ export class FlightBookingReviewComponent implements OnInit {
   }
 
   confirm() {
+    // event captured to disable prev tabs
     this.confirmed.emit(true);
 
     // create booking

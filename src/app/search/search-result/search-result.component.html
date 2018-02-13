@@ -16,17 +16,17 @@
 <mat-card *ngFor="let flight of searchService.searchResultList[0]; let i = index" class="mb-2"
           style="padding-bottom: 10px;">
   <div class="row">
-    <div class="col-md-3">
+    <div class="col-sm-3">
       <img [src]="getLogo(flight.flightName)" class="img-fluid" [alt]="flight.flightName"/>
     </div>
-    <div class="col-md-2 d-inline-block">
+    <div class="col-sm-2 d-inline-block">
       <!--<div class="row">-->
       <!--<small>Departure</small>-->
       <!--</div>-->
       <div>{{flight.originDepartTime}}</div>
       <small>{{flight.originDepartDate}}</small>
     </div>
-    <div class="col-md-2 d-inline-block">
+    <div class="col-sm-2 d-inline-block">
       <!--<div class="row">-->
       <!--<small>Arrival</small>-->
       <!--</div>-->
@@ -38,7 +38,7 @@
       </div>
 
     </div>
-    <div class="col-md-2">
+    <div class="col-sm-2">
       <!--<div class="row">-->
       <!--<small>Duration</small>-->
       <!--</div>-->
@@ -51,7 +51,7 @@
         </small>
       </div>
     </div>
-    <div class="col-md-3 d-inline-block" style="position:relative; padding-top: 10px;">
+    <div class="col-sm-3 d-inline-block" style="position:relative; padding-top: 10px;">
       <span name="price mt-2">INR : {{flight.totalPrice}}</span>
     </div>
   </div>

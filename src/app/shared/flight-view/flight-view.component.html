@@ -1,15 +1,15 @@
 <div class="row">
-  <div class="col-md-3">
+  <div class="col-sm-3">
     <img [src]="getLogo(flight.flightName)" style="height: auto;" class="img-fluid" [alt]="flight.flightName"/>
   </div>
-  <div class="col-md-2 d-inline-block">
+  <div class="col-sm-2 d-inline-block">
     <!--<div class="row">-->
     <!--<small>Departure</small>-->
     <!--</div>-->
     <div>{{flight.originDepartTime}}</div>
     <small>{{flight.originDepartDate}}</small>
   </div>
-  <div class="col-md-2 d-inline-block">
+  <div class="col-sm-2 d-inline-block">
     <!--<div class="row">-->
     <!--<small>Arrival</small>-->
     <!--</div>-->
@@ -21,7 +21,7 @@
     </div>
 
   </div>
-  <div class="col-md-2">
+  <div class="col-sm-2">
     <!--<div class="row">-->
     <!--<small>Duration</small>-->
     <!--</div>-->
@@ -34,7 +34,7 @@
       </small>
     </div>
   </div>
-  <div class="col-md-3 d-inline-block" style="position:relative; padding-top: 10px;">
+  <div class="col-sm-3 d-inline-block" style="position:relative; padding-top: 10px;">
     <span name="price mt-2">INR : {{flight.pricePerAdult}}</span>
   </div>
 </div>
@@ -47,8 +47,8 @@
   <div *ngIf="flightBookingService.loaded">
     <div class="my-2 mx-2">
       <div class="row">
-        <div class="col-md-2"></div>
-        <div class="col-md-4">
+        <div class="col-sm-2"></div>
+        <div class="col-sm-4">
           <div>
             {{flightBookingService.flightDetailsResponse.response.detailResult[0].flightName}}
             {{flightBookingService.flightDetailsResponse.response.detailResult[0].flightNumber}}
@@ -58,7 +58,7 @@
           </div>
         </div>
 
-        <div class="col-md-4">
+        <div class="col-sm-4">
           <div
             [ngClass]="{
             'text-success': flightBookingService.flightDetailsResponse.response.detailResult[0].seatRemain > 10,
@@ -75,7 +75,7 @@
     <hr>
     <p>Fare Details</p>
     <div class="row">
-      <div class="col-md-3">
+      <div class="col-sm-3">
         <div>
           {{ flightBookingService.flightDetailsResponse.response.detailResult[0].pricePerAdult }}
         </div>
@@ -86,7 +86,7 @@
         </div>
       </div>
 
-      <div class="col-md-3">
+      <div class="col-sm-3">
         <div>
           {{ flightBookingService.flightDetailsResponse.response.detailResult[0].pricePerChild }}
         </div>
@@ -96,7 +96,7 @@
           </small>
         </div>
       </div>
-      <div class="col-md-3">
+      <div class="col-sm-3">
         <div>
           {{ flightBookingService.flightDetailsResponse.response.detailResult[0].pricePerInfant }}
         </div>
@@ -106,7 +106,7 @@
           </small>
         </div>
       </div>
-      <div class="col-md-3">
+      <div class="col-sm-3">
         <div>
           <p class="text-success"
              *ngIf="flightBookingService.flightDetailsResponse.response.detailResult[0].refundable">Refundable</p>

@@ -17,6 +17,7 @@ export class PaymentComponent implements OnInit, OnDestroy {
 
   paymentResponseSubscription: Subscription;
   cardInformationForm: FormGroup;
+  loaded: boolean;
 
   constructor(private router: Router,
               protected paymentService: PaymentService,
@@ -32,6 +33,8 @@ export class PaymentComponent implements OnInit, OnDestroy {
       cvv: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(3)]],
       name: ['', Validators.required]
     });
+
+    this.loaded = true;
   }
 
 
@@ -39,6 +42,8 @@ export class PaymentComponent implements OnInit, OnDestroy {
     if (this.cardInformationForm.status === 'INVALID') {
       return;
     }
+    // to indicate that response is yet to be received from payment gateway
+    this.loaded = false;
 
     const cardDetails: CardDetails = {
       userId: 'Ajay',
@@ -47,18 +52,22 @@ export class PaymentComponent implements OnInit, OnDestroy {
       cvv: this.cardInformationForm.controls['cvv'].value,
       cardNumber: this.cardInformationForm.controls['cardNumber'].value
     };
+
     // reroute when response is received from payment gateway
     this.paymentResponseSubscription = this.paymentService.proceedPayment(cardDetails).subscribe(
       data => {
         this.flightBookingResultService.bookingResultResponse = <BookingResultServiceResponse> data;
         console.log(' this.flightBookingResultService.bookingResultResponse ' + this.flightBookingResultService.bookingResultResponse);
         this.router.navigate(['confirmed/flight']);
+        this.loaded = true;
       });
   }
 
   cancel() {
     this.router.navigate(['']);
   }
+
+
 
   ngOnDestroy() {
     if (this.paymentResponseSubscription) {

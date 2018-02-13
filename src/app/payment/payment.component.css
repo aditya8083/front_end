@@ -1,0 +1,14 @@
+.payment-component-disabled{
+  pointer-events: none;
+  opacity: 0.4;
+  width: 100%;
+  height: 100%;
+}
+
+.payment-component-disabled mat-spinner {
+  position: fixed;
+  left: 50%;
+  top:50%;
+  z-index: 20;
+}
+

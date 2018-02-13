@@ -1,41 +1,46 @@
-<div class="alert alert-danger" *ngIf="!paymentService.paymentInitialized">Unable to initialize payment service.</div>
+<div [ngClass]="{'!payment-component-disabled':!loaded}">
+  <mat-spinner *ngIf="!loaded"></mat-spinner>
+  <div class="alert alert-danger" *ngIf="!paymentService.paymentInitialized">Unable to initialize payment service.</div>
 
-<div *ngIf="paymentService.paymentInitialized">
-  <form [formGroup]="cardInformationForm">
-    <h4>Payment Details</h4>
-    <div class="row">
-      <div class="col-md-3"></div>
-      <div class="col-md-6">
-        <mat-card>
-          <mat-form-field class="col-sm-12">
-            <input matInput placeholder="Card Number" formControlName="cardNumber" required maxlength="16">
-          </mat-form-field>
-
-          <mat-form-field class="col-sm-12">
-            <input matInput placeholder="Card holder name" formControlName="name" required maxlength="16">
-          </mat-form-field>
-
-          <div style="font-size:12px;">
-            <mat-form-field class="col-sm-2">
-              <input matInput placeholder="Month" formControlName="expiryMonth" required maxlength="2">
+  <div *ngIf="paymentService.paymentInitialized">
+    <form [formGroup]="cardInformationForm">
+      <h4>Payment Details</h4>
+      <div class="row">
+        <div class="col-md-3"></div>
+        <div class="col-md-6">
+          <mat-card>
+            <mat-form-field class="col-sm-12">
+              <input matInput placeholder="Card Number" formControlName="cardNumber" required maxlength="16">
             </mat-form-field>
 
-            <mat-form-field class="col-sm-2">
-              <input matInput placeholder="Year" formControlName="expiryYear" required maxlength="2">
+            <mat-form-field class="col-sm-12">
+              <input matInput placeholder="Card holder name" formControlName="name" required maxlength="16">
             </mat-form-field>
 
-            <mat-form-field class="col-sm-4 float-right">
-              <input matInput placeholder="CVV" formControlName="cvv" required maxlength="3">
-            </mat-form-field>
-          </div>
+            <div style="font-size:12px;">
+              <mat-form-field class="col-sm-2">
+                <input matInput placeholder="Month" formControlName="expiryMonth" required maxlength="2">
+              </mat-form-field>
 
-        </mat-card>
+              <mat-form-field class="col-sm-2">
+                <input matInput placeholder="Year" formControlName="expiryYear" required maxlength="2">
+              </mat-form-field>
+
+              <mat-form-field class="col-sm-4 float-right">
+                <input matInput placeholder="CVV" formControlName="cvv" required maxlength="3">
+              </mat-form-field>
+            </div>
+
+          </mat-card>
+        </div>
       </div>
-    </div>
-    <div class="my-2">
-      <button mat-raised-button class="btn-danger" (click)="cancel()" #cancelButton>Cancel</button>
-      <button mat-raised-button class="btn-success" type="submit" (click)="validateFormAndProceedPayment()" #payButton>Pay</button>
-    </div>
-  </form>
+      <div class="my-2">
+        <button mat-raised-button class="btn-danger" (click)="cancel()" #cancelButton>Cancel</button>
+        <button mat-raised-button class="btn-success" type="submit" (click)="validateFormAndProceedPayment()"
+                #payButton>Pay
+        </button>
+      </div>
+    </form>
 
+  </div>
 </div>

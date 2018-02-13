@@ -9,14 +9,11 @@ import {BookingResultServiceResponse} from '../models/flight-booking-result.mode
 export class PaymentService {
   paymentComponentInput: PaymentComponentInput;
   paymentInitialized = false;
-
   constructor(private httpClient: HttpClient,
               private flightBookingResultService: BookingResultService) {
-
   }
 
   proceedPayment(cardDetails: CardDetails) {
-
     const paymentRequest: PaymentRequest = {
       customerId: this.paymentComponentInput.customerId,
       paymentMethod: 'CARD',
@@ -26,12 +23,8 @@ export class PaymentService {
       cardDetailsDTO: cardDetails
     };
 
-    // const url = ApiLinks.addParams(ApiLinks.makePaymentUrl, paymentRequest);
-
     // call payment making service
-
     return this.httpClient.post(ApiLinks.makePaymentUrl, paymentRequest);
-    // return this.httpClient.get(url);
   }
 
   reset() {

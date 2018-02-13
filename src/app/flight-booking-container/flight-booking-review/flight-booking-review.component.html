@@ -8,15 +8,29 @@
     *ngFor="let passengerBio of flightBookingService.passengerDetailsFormGroup.value['passengerBioFormArray']; let i = index">
     <h4 mat-line><span class="mr-2">{{i + 1}}.</span>
       {{passengerBio.title}} {{passengerBio.firstName}} {{passengerBio.middleName}} {{passengerBio.lastName}}
-     <small>{{passengerBio.gender}}</small>  <small>{{passengerBio.dob | date:'dd-MM-yy'}}</small>  </h4>
+      <small>{{passengerBio.gender}}</small>
+      <small>{{passengerBio.age}} year(s)</small>
+    </h4>
   </mat-list-item>
   <hr>
 
-  <h3 mat-subheader>Contact</h3>
-  <mat-list-item>
-    <h4 mat-line> {{this.flightBookingService.passengerDetailsFormGroup.value['passengerContactDetailsGroup'].email}} </h4>
-  </mat-list-item>
-  <mat-list-item>{{this.flightBookingService.passengerDetailsFormGroup.value['passengerContactDetailsGroup'].phoneNumber}}</mat-list-item>
+  <h2 mat-subheader>Contact Details</h2>
+  <div class="table-responsive font-weight-light col-md-6" style="font-size: 12px;">
+    <table class="table">
+      <tbody>
+      <tr>
+        <td>Email</td>
+        <td><b>{{this.flightBookingService.passengerDetailsFormGroup.value['passengerContactDetailsGroup'].email}}</b>
+        </td>
+      </tr>
+      <tr>
+        <td>Mobile Number</td>
+        <td><b>{{this.flightBookingService.passengerDetailsFormGroup.value['passengerContactDetailsGroup'].mobileNumber}}</b>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
 </mat-list>
 
 <p>

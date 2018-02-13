@@ -27,19 +27,13 @@ export class PaymentComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.cardInformationForm = this.fb.group({
       cardNumber: ['', Validators.required],
-      expiryMonth: ['', Validators.required],
-      expiryYear: ['', Validators.required],
-      cvv: ['', Validators.required],
-      name: ''
+      expiryMonth: ['', [Validators.required, Validators.min(1), Validators.max(12)]],
+      expiryYear: ['', [Validators.required, Validators.min(18)]],
+      cvv: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(3)]],
+      name: ['', Validators.required]
     });
   }
 
-
-  validateForm() {
-    if (this.cardInformationForm.controls['expiryMonth'].value > 12) {
-      this.cardInformationForm.set
-    }
-  }
 
   validateFormAndProceedPayment() {
     if (this.cardInformationForm.status === 'INVALID') {
@@ -57,7 +51,7 @@ export class PaymentComponent implements OnInit, OnDestroy {
     this.paymentResponseSubscription = this.paymentService.proceedPayment(cardDetails).subscribe(
       data => {
         this.flightBookingResultService.bookingResultResponse = <BookingResultServiceResponse> data;
-        console.log( " this.flightBookingResultService.bookingResultResponse " + this.flightBookingResultService.bookingResultResponse );
+        console.log(' this.flightBookingResultService.bookingResultResponse ' + this.flightBookingResultService.bookingResultResponse);
         this.router.navigate(['confirmed/flight']);
       });
   }

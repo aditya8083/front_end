@@ -57,7 +57,7 @@ export class PassengerDetailsComponent implements OnInit, OnDestroy {
       firstName: '',
       middleName: '',
       lastName: '',
-      dob: '',
+      age: '',
       gender: ''
     });
   }

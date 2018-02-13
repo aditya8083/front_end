@@ -1,5 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {FlightInfo} from '../../search/search.flight.model';
+import {FlightDetailsResponse} from '../../models/flightDetails.model';
+import {FlightBookingService} from '../../flight-booking-container/flight.booking.service';
 
 @Component({
   selector: 'app-flight-view',
@@ -9,12 +11,13 @@ import {FlightInfo} from '../../search/search.flight.model';
 export class FlightViewComponent implements OnInit {
 
   @Input('flight') flight: FlightInfo;
+  @Input('dependent') dependent: boolean;
 
-  constructor() { }
+  constructor(protected flightBookingService: FlightBookingService) { }
 
   ngOnInit() {
-    console.log('flight view message');
-    console.log(this.flight);
   }
+
+
 
 }

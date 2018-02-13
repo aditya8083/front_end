@@ -1,12 +1,4 @@
 <div [formGroup]="passengerDetailsFormGroup">
-  <div class="my-2">
-    Flight Details
-  </div>
-  <mat-card class="my-1 mx-2">
-    <div *ngFor="let flight of flightBookingService.currentBooking">
-      <app-flight-view [flight]="flight"></app-flight-view>
-    </div>
-  </mat-card>
   <div *ngFor="let i of passengerCountList" formArrayName="passengerBioFormArray">
 
     <div style="padding-top: 20px">
@@ -40,10 +32,7 @@
 
             <div>
               <mat-form-field>
-                <input matInput [matDatepicker]="dobpicker" (focus)="dobpicker.open()"
-                       placeholder="Date of birth" #dobField formControlName="dob">
-                <mat-datepicker-toggle matSuffix [for]="dobpicker"></mat-datepicker-toggle>
-                <mat-datepicker #dobpicker disabled="false"></mat-datepicker>
+                <input matInput placeholder="Age" formControlName="age" required>
               </mat-form-field>
             </div>
 
@@ -103,7 +92,7 @@
   <hr>
 
   <div class="my-2">
-    Seat Request
+    Seat Request <small>(Coming Soon) </small>
     <div class="left-container">
       <br>
       <button mat-raised-button class="btn btn-primary">Select Seats</button>

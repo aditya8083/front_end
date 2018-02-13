@@ -3,12 +3,28 @@
     <mat-step #tabPassengerDetails>
       <ng-template matStepLabel>Passenger details</ng-template>
       <mat-divider></mat-divider>
+      <div class="my-2">
+        Flight Details
+      </div>
+      <mat-card class="my-1 mx-2">
+        <div *ngFor="let flight of flightBookingService.currentBooking">
+          <app-flight-view [flight]="flight" [dependent]="true"></app-flight-view>
+        </div>
+      </mat-card>
       <app-passenger-details></app-passenger-details>
     </mat-step>
 
     <mat-step #tabReview>
       <ng-template matStepLabel>Review</ng-template>
       <mat-divider></mat-divider>
+      <div class="my-2">
+        Flight Details
+      </div>
+      <mat-card class="my-1 mx-2">
+        <div *ngFor="let flight of flightBookingService.currentBooking">
+          <app-flight-view [flight]="flight" [dependent]="true"></app-flight-view>
+        </div>
+      </mat-card>
       <app-flight-booking-review (confirmed)="confirmed()"></app-flight-booking-review>
     </mat-step>
 
@@ -16,8 +32,13 @@
 
       <ng-template matStepLabel>Payment</ng-template>
       <mat-divider></mat-divider>
-      <mat-card class="my-2 mx-2">
-        <app-flight-view *ngFor="let flight of flightBookingService.currentBooking" [flight]="flight"></app-flight-view>
+      <div class="my-2">
+        Flight Details
+      </div>
+      <mat-card class="my-1 mx-2">
+        <div *ngFor="let flight of flightBookingService.currentBooking">
+          <app-flight-view [flight]="flight" [dependent]="true"></app-flight-view>
+        </div>
       </mat-card>
       <app-payment></app-payment>
     </mat-step>

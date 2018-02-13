@@ -7,7 +7,7 @@ import {BookingResultServiceResponse} from '../models/flight-booking-result.mode
 
 @Injectable()
 export class PaymentService {
-  paymentRequest: PaymentComponentInput;
+  paymentComponentInput: PaymentComponentInput;
   paymentInitialized = false;
 
   constructor(private httpClient: HttpClient,
@@ -18,23 +18,23 @@ export class PaymentService {
   proceedPayment(cardDetails: CardDetails) {
 
     const paymentRequest: PaymentRequest = {
-      customerId: this.paymentRequest.customerId,
+      customerId: this.paymentComponentInput.customerId,
       paymentMethod: 'CARD',
       paymentStatus: 'PENDING',
-      providerId: this.paymentRequest.providerId,
-      superPnr: this.paymentRequest.superPnr,
+      providerId: this.paymentComponentInput.providerId,
+      superPnr: this.paymentComponentInput.superPnr,
       cardDetailsDTO: cardDetails
     };
 
-    const url = ApiLinks.addParams(ApiLinks.makePaymentUrl, paymentRequest);
+    // const url = ApiLinks.addParams(ApiLinks.makePaymentUrl, paymentComponentInput);
 
     // call payment making service
 
-    return this.httpClient.get(url);
+    return this.httpClient.post(ApiLinks.makePaymentUrl, paymentRequest);
   }
 
   reset() {
-    this.paymentRequest = null;
+    this.paymentComponentInput = null;
     this.paymentInitialized = false;
   }
 }

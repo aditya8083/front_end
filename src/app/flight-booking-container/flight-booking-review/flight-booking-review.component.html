@@ -1,14 +1,3 @@
-<mat-divider></mat-divider>
-
-<div class="my-2">
-  Flight Details
-</div>
-<mat-card class="my-1 mx-2">
-  <div *ngFor="let flight of flightBookingService.currentBooking">
-    <app-flight-view [flight]="flight"></app-flight-view>
-  </div>
-</mat-card>
-
 <hr>
 <div class="my-2">
   Passenger Details
@@ -25,8 +14,9 @@
 
   <h3 mat-subheader>Contact</h3>
   <mat-list-item>
-    <h4 mat-line> {{displayContactDetails()}} </h4>
+    <h4 mat-line> {{this.flightBookingService.passengerDetailsFormGroup.value['passengerContactDetailsGroup'].email}} </h4>
   </mat-list-item>
+  <mat-list-item>{{this.flightBookingService.passengerDetailsFormGroup.value['passengerContactDetailsGroup'].phoneNumber}}</mat-list-item>
 </mat-list>
 
 <p>

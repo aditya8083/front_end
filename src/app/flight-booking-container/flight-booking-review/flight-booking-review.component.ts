@@ -43,7 +43,7 @@ export class FlightBookingReviewComponent implements OnInit {
   }
 
   displayContactDetails() {
-    return this.flightBookingService.passengerDetailsFormGroup.value['passengerContactDetailsGroup'].email + '   ' +
+    return this.flightBookingService.passengerDetailsFormGroup.value['passengerContactDetailsGroup'].email + '  ' +
       this.flightBookingService.passengerDetailsFormGroup.value['passengerContactDetailsGroup'].telephoneNumber + '  ' +
       this.flightBookingService.passengerDetailsFormGroup.value['passengerContactDetailsGroup'].mobileNumber;
   }
@@ -63,7 +63,7 @@ export class FlightBookingReviewComponent implements OnInit {
     this.flightBookingService.createBooking();
 
     // send stuff to payment
-    this.paymentService.paymentRequest = {
+    this.paymentService.paymentComponentInput = {
       superPnr: this.flightBookingService.flightDetailsResponse.response.superPnr,
       customerId: this.flightBookingService.passengerDetailsFormGroup.value['passengerContactDetailsGroup'].email,
       providerId: 'ABC'

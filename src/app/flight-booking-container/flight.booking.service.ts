@@ -15,7 +15,7 @@ export class FlightBookingService {
   // form reference, set externally
   passengerDetailsFormGroup: FormGroup;
   // when api calls are loading
-  loaded = true;
+  loaded = false;
   // details response for flight-details
   flightDetailsResponse: FlightDetailsResponse;
 
@@ -38,6 +38,7 @@ export class FlightBookingService {
   }
 
   fetchFlightDetails() {
+    this.loaded = false;
     const flightDetailsRequest: FlightDetailsRequest = {
       destination: this.currentBooking[0].destination,
       originDepartDate: this.currentBooking[0].originDepartDate,
@@ -54,6 +55,7 @@ export class FlightBookingService {
     this.httpClient.get(url)
       .subscribe(data => {
         this.flightDetailsResponse = <FlightDetailsResponse> data;
+        this.loaded = true;
       });
   }
 
@@ -65,7 +67,7 @@ export class FlightBookingService {
     for (const passenger of this.passengerDetailsFormGroup.value['passengerBioFormArray']) {
       passengerArray.push({
         name : passenger.firstName + ' ' + passenger.lastName,
-        age: '20'
+        age: passenger.age
       });
     }
     // create partial booking
@@ -82,8 +84,8 @@ export class FlightBookingService {
       passengers: passengerArray,
       paymentStatus: 'PENDING'
     };
-    const url = ApiLinks.addParams(ApiLinks.flightCreateBooking, partialBookingRequest);
-    this.httpClient.get(url)
+    // const url = ApiLinks.addParams(ApiLinks.flightCreateBooking, partialBookingRequest);
+    this.httpClient.post(ApiLinks.flightCreateBooking, partialBookingRequest)
       .subscribe(
         data => {console.log(data);
         }

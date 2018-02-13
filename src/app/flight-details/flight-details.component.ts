@@ -18,6 +18,8 @@ export class FlightDetailsComponent implements OnInit, OnDestroy {
   @ViewChild('fareDetailContainer') fareDetailContainer: ElementRef;
   @ViewChild('fareDetailContent') fareDetailContent: ElementRef;
 
+
+
   loaded = false;
   flightDetailsResponse: FlightDetailsResponse;
   flightDetailsResponseSubscription: Subscription;

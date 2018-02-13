@@ -27,9 +27,8 @@ export class SearchResultComponent implements OnInit {
     // [0][i] => 0 is for ONEWAY flights
     this.flightBookingService.currentBooking = [this.searchService.searchResultList[0][i]];
     this.flightBookingService.passengers = this.searchService.passengers;
-    console.log(this.searchService.passengers);
     console.log('Booking for ' + i);
-    this.flightBookingService.fetchFlightDetails();
+    // this.flightBookingService.fetchFlightDetails();
     this.router.navigate(['/booking', 'flight']);
   }
 

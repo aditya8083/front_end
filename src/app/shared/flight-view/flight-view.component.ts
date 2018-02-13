@@ -13,6 +13,8 @@ export class FlightViewComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    console.log('flight view message');
+    console.log(this.flight);
   }
 
 }

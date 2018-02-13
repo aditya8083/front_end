@@ -35,7 +35,7 @@
     <div class="tab-content" #flightDetailContainer>
     </div>
   </mat-tab>
-  <mat-tab label="Fare details" >
+  <mat-tab label="Fare details">
     <div class="tab-content" #fareDetailContainer>
     </div>
   </mat-tab>
@@ -58,10 +58,87 @@
 </mat-tab-group>
 
 <div #flightDetailContent>
-  Flight details will be displayed here...
+  <div class="my-2 mx-2">
+    <div *ngIf="!loaded">
+      <mat-spinner></mat-spinner>
+    </div>
+    <div *ngIf="loaded">
+        <app-flight-view [flight]="flight"></app-flight-view>
+      <hr>
+      <div class="row">
+        <div class="col-md-4">
+          <div>
+            {{flightDetailsResponse.response.detailResult[0].flightName}}
+            {{flightDetailsResponse.response.detailResult[0].flightNumber}}
+          </div>
+          <div>
+            <small>Flight number</small>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div
+            [ngClass]="{
+            'text-success': flightDetailsResponse.response.detailResult[0].seatRemain > 10,
+             'text-danger':flightDetailsResponse.response.detailResult[0].seatRemain <= 10
+             }">
+            {{ flightDetailsResponse.response.detailResult[0].seatRemain }}
+          </div>
+          <div>
+            <small>Seats Remaining</small>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 
 <div #fareDetailContent>
-  Fare details will be displayed here..
+  <div class="my-2 mx-2">
+    <div *ngIf="!loaded">
+      Loading...
+    </div>
+    <div *ngIf="loaded">
+      <div class="row">
+        <div class="col-md-3">
+          <div>
+            {{ flightDetailsResponse.response.detailResult[0].pricePerAdult }}
+          </div>
+          <div>
+            <small>
+              Price per adult
+            </small>
+          </div>
+        </div>
+
+        <div class="col-md-3">
+          <div>
+            {{ flightDetailsResponse.response.detailResult[0].pricePerChild }}
+          </div>
+          <div>
+            <small>
+              Price per Child
+            </small>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div>
+            {{ flightDetailsResponse.response.detailResult[0].pricePerInfant }}
+          </div>
+          <div>
+            <small>
+              Price per Infant
+            </small>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div>
+            <p class="text-success" *ngIf="flightDetailsResponse.response.detailResult[0].refundable">Refundable</p>
+            <p class="text-danger" *ngIf="!flightDetailsResponse.response.detailResult[0].refundable">Non Refundable</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 

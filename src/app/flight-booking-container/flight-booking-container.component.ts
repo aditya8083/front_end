@@ -12,7 +12,7 @@ import {StepperSelectionEvent} from '@angular/cdk/stepper';
 })
 export class FlightBookingContainerComponent implements OnInit, AfterViewInit {
 
-  isLinear = false;
+  isLinear = true;
   firstFormGroup: FormGroup;
   secondFormGroup: FormGroup;
   @ViewChild('stepper') stepper: MatStepper;
@@ -35,10 +35,10 @@ export class FlightBookingContainerComponent implements OnInit, AfterViewInit {
 
 
     // if the path is accessed directly instead of through search results, then navigate back to homepage
-    // if (this.flightBookingService.currentBooking.length === 0) {
-    //   console.log('Invalid Booking Attempt');
-    //   this.router.navigate(['']);
-    // }
+    if (this.flightBookingService.currentBooking == null) {
+      console.log('Invalid Booking Attempt');
+      this.router.navigate(['']);
+    }
 
   }
 

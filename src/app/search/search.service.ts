@@ -4,6 +4,7 @@ import 'rxjs/add/operator/map';
 import {FlightInfo, PassengerCount, SearchParams, SearchResponse} from './search.flight.model';
 import {ApiLinks} from '../shared/api-links';
 import {Utils} from '../shared/Utils';
+import {FlightDetailsRequest, FlightDetailsResponse} from '../models/flightDetails.model';
 
 @Injectable()
 export class SearchService {
@@ -13,6 +14,7 @@ export class SearchService {
   message = '';
   loaded = true;
   passengers: PassengerCount;
+
 
   constructor(private httpClient: HttpClient) {
   }
@@ -54,6 +56,23 @@ export class SearchService {
         this.message = 'Can\'t connect to search Micro Service.';
       });
 
+  }
+
+  fetchDetails(flight: FlightInfo) {
+    const flightDetailsRequest: FlightDetailsRequest = {
+      destination: flight.destination,
+      originDepartDate: flight.originDepartDate,
+      adults: this.passengers.adult,
+      children: this.passengers.child,
+      infants: this.passengers.infant,
+      flightType: 'ONEWAY',
+      origin: flight.origin,
+      destinationArrivalDate: flight.destinationArrivalDate,
+      flightId: flight.flightId
+    };
+
+    const url = ApiLinks.addParams(ApiLinks.flightDetailsBase, flightDetailsRequest);
+    return this.httpClient.get<FlightDetailsResponse>(url);
   }
 
 

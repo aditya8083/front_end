@@ -1,5 +1,5 @@
 import {Injectable, Input} from '@angular/core';
-import {PaymentComponentInput, PaymentRequest} from './payment.model';
+import {CardDetails, PaymentComponentInput, PaymentRequest} from './payment.model';
 import {HttpClient} from '@angular/common/http';
 import {ApiLinks} from '../shared/api-links';
 import {BookingResultService} from '../flight-booking-result/booking-result-service.service';
@@ -15,7 +15,7 @@ export class PaymentService {
 
   }
 
-  proceedPayment() {
+  proceedPayment(cardDetails: CardDetails) {
 
     const paymentRequest: PaymentRequest = {
       customerId: this.paymentRequest.customerId,
@@ -23,22 +23,18 @@ export class PaymentService {
       paymentStatus: 'PENDING',
       providerId: this.paymentRequest.providerId,
       superPnr: this.paymentRequest.superPnr,
-      cardDetailsDTO: {
-        cardNumber: '123',
-        cvv: '123',
-        expDate: '2020-12-02',
-        nameOnCard: 'Ajay',
-        userId: this.paymentRequest.customerId
-      }
+      cardDetailsDTO: cardDetails
     };
 
-    const url = ApiLinks.addParams(ApiLinks.makePaymentUrl, this.paymentRequest);
+    const url = ApiLinks.addParams(ApiLinks.makePaymentUrl, paymentRequest);
 
-    this.httpClient.get(url).
-      subscribe(
-        data => {
-          this.flightBookingResultService.bookingResultResponse = <BookingResultServiceResponse>data;
-        }
-    );
+    // call payment making service
+
+    return this.httpClient.get(url);
+  }
+
+  reset() {
+    this.paymentRequest = null;
+    this.paymentInitialized = false;
   }
 }

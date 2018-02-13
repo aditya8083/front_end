@@ -7,17 +7,27 @@ import {ApiLinks} from '../shared/api-links';
 
 @Injectable()
 export class FlightBookingService {
-  currentBooking: FlightInfo[] = [];
+  // set externally
+  currentBooking: FlightInfo[] = null;
+  // set externally
   passengers: PassengerCount;
   passengerSum: number;
+  // form reference, set externally
   passengerDetailsFormGroup: FormGroup;
-  detailsReviewed = false;
-  loaded = false;
+  // when api calls are loading
+  loaded = true;
+  // details response for flight-details
   flightDetailsResponse: FlightDetailsResponse;
 
   constructor(private httpClient: HttpClient) {
   }
 
+  reset() {
+    this.currentBooking = null;
+    this.passengers = null;
+    this.flightDetailsResponse = null;
+    this.passengerDetailsFormGroup = null;
+  }
 
   getPassengerCountList(): number[] {
     if (this.passengers == null) {
@@ -46,6 +56,8 @@ export class FlightBookingService {
         this.flightDetailsResponse = <FlightDetailsResponse> data;
       });
   }
+
+
 
   createBooking() {
 

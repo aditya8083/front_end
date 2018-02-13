@@ -1,12 +1,12 @@
 <div [formGroup]="passengerDetailsFormGroup">
   <div class="my-2">
-    <p>
-      Booking for flight :
-      <span *ngFor="let booking of flightBookingService.currentBooking">
-      {{booking.flightId}} <br>
-    </span>
-    </p>
+    Flight Details
   </div>
+  <mat-card class="my-1 mx-2">
+    <div *ngFor="let flight of flightBookingService.currentBooking">
+      <app-flight-view [flight]="flight"></app-flight-view>
+    </div>
+  </mat-card>
   <div *ngFor="let i of passengerCountList" formArrayName="passengerBioFormArray">
 
     <div style="padding-top: 20px">
@@ -119,7 +119,7 @@
           <!-- Position Column -->
           <ng-container matColumnDef="position">
             <mat-header-cell *matHeaderCellDef> No.</mat-header-cell>
-            <mat-cell *matCellDef="let element"> {{0}}</mat-cell>
+            <mat-cell *matCellDef="let element"> {{1}}</mat-cell>
           </ng-container>
 
           <!-- Name Column -->
@@ -150,7 +150,7 @@
   <br>
 </div>
 <div class="mt-4 mb-2">
-  <button mat-raised-button class="mx-2 btn btn-danger"  (click)="cancel()">Cancel</button>
+  <button mat-raised-button class="mx-2 btn btn-danger" (click)="cancel()">Cancel</button>
 
   <button mat-raised-button class="btn btn-primary" matStepperNext (click)="next()">Next</button>
 </div>

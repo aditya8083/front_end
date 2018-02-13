@@ -57,19 +57,18 @@ export class FlightBookingReviewComponent implements OnInit {
   }
 
   confirm() {
-    this.flightBookingService.detailsReviewed = true;
     this.confirmed.emit(true);
 
     // create booking
     this.flightBookingService.createBooking();
 
     // send stuff to payment
-    this.paymentService.paymentInitialized = true;
     this.paymentService.paymentRequest = {
       superPnr: this.flightBookingService.flightDetailsResponse.response.superPnr,
       customerId: this.flightBookingService.passengerDetailsFormGroup.value['passengerContactDetailsGroup'].email,
       providerId: 'ABC'
     };
+    this.paymentService.paymentInitialized = true;
     console.log('initializing payment service');
   }
 }

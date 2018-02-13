@@ -2,12 +2,13 @@
   <mat-horizontal-stepper [linear]="isLinear" #stepper="matHorizontalStepper">
     <mat-step #tabPassengerDetails>
       <ng-template matStepLabel>Passenger details</ng-template>
-      <app-passenger-details></app-passenger-details>
       <mat-divider></mat-divider>
+      <app-passenger-details></app-passenger-details>
     </mat-step>
 
     <mat-step #tabReview>
       <ng-template matStepLabel>Review</ng-template>
+      <mat-divider></mat-divider>
       <app-flight-booking-review (confirmed)="confirmed()"></app-flight-booking-review>
     </mat-step>
 
@@ -15,7 +16,10 @@
 
       <ng-template matStepLabel>Payment</ng-template>
       <mat-divider></mat-divider>
-        <app-payment></app-payment>
+      <mat-card class="my-2 mx-2">
+        <app-flight-view *ngFor="let flight of flightBookingService.currentBooking" [flight]="flight"></app-flight-view>
+      </mat-card>
+      <app-payment></app-payment>
     </mat-step>
 
   </mat-horizontal-stepper>

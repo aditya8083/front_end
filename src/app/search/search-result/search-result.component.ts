@@ -24,6 +24,7 @@ export class SearchResultComponent implements OnInit {
   // communicating between services
   bookResult(i: number) {
 
+    // [0][i] => 0 is for ONEWAY flights
     this.flightBookingService.currentBooking = [this.searchService.searchResultList[0][i]];
     this.flightBookingService.passengers = this.searchService.passengers;
     console.log(this.searchService.passengers);

@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {FlightBookingService} from '../flight-booking-container/flight.booking.service';
+import {BookingResultService} from './booking-result-service.service';
 
 @Component({
   selector: 'app-flight-booking-result',
@@ -7,7 +9,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FlightBookingResultComponent implements OnInit {
 
-  constructor() { }
+  constructor(protected flightBookingService: FlightBookingService,
+              protected bookingResultService: BookingResultService) { }
 
   ngOnInit() {
   }

@@ -1,33 +1,41 @@
 <div class="alert alert-danger" *ngIf="!paymentService.paymentInitialized">Unable to initialize payment service.</div>
 
 <div *ngIf="paymentService.paymentInitialized">
-
-  <h1>Booking for {{paymentService.paymentRequest.superPnr}}</h1>
-    <div class="col-md-6">
-      <mat-card>
-        <mat-form-field class="col-md-12">
-          <input matInput placeholder="Card Number" formControlName="firstName" required>
-        </mat-form-field>
-
-        <div>
-          <mat-form-field class="col-md-2">
-            <input matInput placeholder="Month" formControlName="firstName" required>
+  <form [formGroup]="cardInformationForm">
+    <h4>Payment Details</h4>
+    <div class="row">
+      <div class="col-md-3"></div>
+      <div class="col-md-6">
+        <mat-card>
+          <mat-form-field class="col-md-12">
+            <input matInput placeholder="Card Number" formControlName="cardNumber" required maxlength="16">
           </mat-form-field>
 
-          <mat-form-field class="col-md-2">
-            <input matInput placeholder="Year" formControlName="firstName" required>
+          <mat-form-field class="col-md-12">
+            <input matInput placeholder="Card holder name" formControlName="name" required maxlength="16">
           </mat-form-field>
 
-          <mat-form-field class="col-md-4 float-right">
-            <input matInput placeholder="CVV" formControlName="firstName" required>
-          </mat-form-field>
-        </div>
+          <div style="font-size:12px;">
+            <mat-form-field class="col-md-2">
+              <input matInput placeholder="Month" formControlName="expiryMonth" required maxlength="2">
+            </mat-form-field>
 
-      </mat-card>
+            <mat-form-field class="col-md-2">
+              <input matInput placeholder="Year" formControlName="expiryYear" required maxlength="2">
+            </mat-form-field>
+
+            <mat-form-field class="col-md-4 float-right">
+              <input matInput placeholder="CVV" formControlName="cvv" required maxlength="3">
+            </mat-form-field>
+          </div>
+
+        </mat-card>
+      </div>
     </div>
-  <div class="my-2">
-    <button mat-raised-button class="btn-danger">Cancel</button>
-    <button mat-raised-button class="btn-success" (click)="proceedPayment()">Pay</button>
-  </div>
+    <div class="my-2">
+      <button mat-raised-button class="btn-danger" (click)="cancel()" #cancelButton>Cancel</button>
+      <button mat-raised-button class="btn-success" type="submit" (click)="proceedPayment()" #payButton>Pay</button>
+    </div>
+  </form>
 
 </div>

@@ -14,7 +14,7 @@ import {SearchResultComponent} from './search/search-result/search-result.compon
 import {SearchBarComponent} from './search/search-bar/search-bar.component';
 import {SearchService} from './search/search.service';
 import {NoopAnimationsModule} from '@angular/platform-browser/animations';
-import {MatAutocompleteModule, MatButtonModule, MatButtonToggleModule, MatCardModule, MatCheckboxModule, MatDatepickerModule, MatDividerModule, MatInputModule, MatListModule, MatNativeDateModule, MatSelectModule, MatStepperModule, MatTableModule, MatTabsModule} from '@angular/material';
+import {MatAutocompleteModule, MatButtonModule, MatButtonToggleModule, MatCardModule, MatCheckboxModule, MatDatepickerModule, MatDividerModule, MatInputModule, MatListModule, MatNativeDateModule, MatProgressSpinnerModule, MatSelectModule, MatStepperModule, MatTableModule, MatTabsModule} from '@angular/material';
 import {AuthComponent} from './auth/auth.component';
 import {RouterModule, Routes} from '@angular/router';
 import { FlightBookingContainerComponent } from './flight-booking-container/flight-booking-container.component';
@@ -26,11 +26,13 @@ import { PaymentComponent } from './payment/payment.component';
 import {FlightBookingResultComponent} from './flight-booking-result/flight-booking-result.component';
 import {PaymentService} from './payment/payment.service';
 import {BookingResultService} from './flight-booking-result/booking-result-service.service';
+import {CleanupService} from './shared/cleanup.service';
 
 
 const appRoutes: Routes = [
   {path: '', component: SearchComponent},
-  {path: 'booking/flight', component: FlightBookingContainerComponent}
+  {path: 'booking/flight', component: FlightBookingContainerComponent},
+  {path: 'confirmed/flight', component: FlightBookingResultComponent}
 ];
 
 @NgModule({
@@ -71,9 +73,10 @@ const appRoutes: Routes = [
     MatSelectModule,
     MatDividerModule,
     MatTableModule,
-    MatListModule
+    MatListModule,
+    MatProgressSpinnerModule
   ],
-  providers: [SearchService, FlightBookingService, PaymentService, BookingResultService],
+  providers: [SearchService, FlightBookingService, PaymentService, BookingResultService, CleanupService],
   bootstrap: [AppComponent]
 })
 export class AppModule {

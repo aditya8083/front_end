@@ -46,7 +46,7 @@
         <!--<input type="text" matInput placeholder="Departure date" id="originDate"-->
         <!--#originDate>-->
         <input matInput [matDatepicker]="originDatePicker" (click)="originDatePicker.open()"
-               [value]="'12/28/2018'" placeholder="Departure date" #originDate>
+               [value]="'2018-12-28'" placeholder="Departure date" #originDate>
         <mat-datepicker-toggle matSuffix [for]="originDatePicker"></mat-datepicker-toggle>
         <mat-datepicker #originDatePicker disabled="false"></mat-datepicker>
       </mat-form-field>
@@ -59,7 +59,7 @@
       <!--</div>-->
 
       <mat-form-field>
-        <input matInput [matDatepicker]="returnDatePicker" placeholder="Return date" [value]="'12/28/2018'"
+        <input matInput [matDatepicker]="returnDatePicker" placeholder="Return date" [value]="'2018-12-28'"
                #returnDate (click)="returnDatePicker.open()" formControlName="returnDate">
 
         <mat-datepicker-toggle matSuffix [for]="returnDatePicker"></mat-datepicker-toggle>

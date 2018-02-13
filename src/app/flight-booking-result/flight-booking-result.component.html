@@ -9,19 +9,21 @@
   }">
   {{ bookingResultService.message }}
 </div>
-<!--<mat-card  *ngIf="bookingResultService.bookingStatus == 'SUCCESSFUL'" class="mb-2" style="padding-bottom: 10px;">-->
-    <!--Congrats your flight has been booked.<br><br>-->
 
-    <!--Booking Status  :  {{bookingResultService.bookingStatus}}<br>-->
 
-    <!--Payment Status  :  {{bookingResultService.paymentStatus}}<br><br>-->
+<mat-card  *ngIf="bookingResultService.bookingResultResponse.bookingStatus == 'SUCCESSFUL'" class="mb-2" style="padding-bottom: 10px;">
+    Congrats your flight has been booked.<br><br>
 
-    <!--Amount Paid : Rs. {{bookingResultService.amount}}.<br>-->
+    Booking Status  :  {{bookingResultService.bookingResultResponse.bookingStatus}}<br>
 
-    <!--Your Flight PNR is  {{bookingResultService.superPnr}}. Please use this to communicate with the Airlines.<br>-->
+    Payment Status  :  {{bookingResultService.bookingResultResponse.paymentStatus}}<br><br>
 
-    <!--Your payment id is {{bookingResultService.paymentId}}. Please use this to communicate to us in case of any issue.-->
+    Amount Paid : <b>Rs. {{bookingResultService.bookingResultResponse.amount}}</b>.<br><br>
 
-    <!--Phone number for the booking : {{bookingResultService.phoneNumber}}-->
-    <!--Email for the booking : {{bookingResultService.bookingEmail}}-->
-<!--</mat-card>-->
+  Your Flight PNR is <b> {{bookingResultService.bookingResultResponse.superPnr}}</b>. Please use this to communicate with the Airlines.<br><br>
+
+  Your payment id is <b>{{bookingResultService.bookingResultResponse.paymentId}}</b>. Please use this to communicate to us in case of any issue.<br><br>
+
+  Phone number used for the booking : <b>{{bookingResultService.bookingResultResponse.phoneNumber}}</b><br>
+  Email used for the booking : <b>{{bookingResultService.bookingResultResponse.bookingEmail}}</b>
+</mat-card>

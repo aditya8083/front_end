@@ -40,6 +40,9 @@ export class FlightBookingContainerComponent implements OnInit, AfterViewInit {
       this.router.navigate(['']);
     }
 
+    // fetch details for current flight.
+    this.flightBookingService.fetchFlightDetails();
+
   }
 
   ngAfterViewInit() {

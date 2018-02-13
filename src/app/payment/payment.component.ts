@@ -34,7 +34,14 @@ export class PaymentComponent implements OnInit, OnDestroy {
     });
   }
 
-  proceedPayment() {
+
+  validateForm() {
+    if (this.cardInformationForm.controls['expiryMonth'].value > 12) {
+      this.cardInformationForm.set
+    }
+  }
+
+  validateFormAndProceedPayment() {
     if (this.cardInformationForm.status === 'INVALID') {
       return;
     }

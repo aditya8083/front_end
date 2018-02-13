@@ -50,6 +50,7 @@ export class PaymentComponent implements OnInit, OnDestroy {
     this.paymentResponseSubscription = this.paymentService.proceedPayment(cardDetails).subscribe(
       data => {
         this.flightBookingResultService.bookingResultResponse = <BookingResultServiceResponse> data;
+        console.log( " this.flightBookingResultService.bookingResultResponse " + this.flightBookingResultService.bookingResultResponse );
         this.router.navigate(['confirmed/flight']);
       });
   }

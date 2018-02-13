@@ -34,7 +34,7 @@ export class PassengerDetailsComponent implements OnInit, OnDestroy {
       passengerBioFormArray: this.fb.array([]),
       passengerContactDetailsGroup: this.fb.group({
         telephoneNumber: '',
-        mobileNumber: '',
+        mobileNumber: ['', [Validators.maxLength(10), Validators.minLength(10)]],
         email: ['', [Validators.required, Validators.email]]
       })
     });

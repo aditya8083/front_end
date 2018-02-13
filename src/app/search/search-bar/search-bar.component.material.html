@@ -1,154 +1,154 @@
 <!--<div style="margin-top:50px">-->
-  <div class="toggle-button-container">
-    <mat-button-toggle-group [formControl]='flightType' (change)="onReturnCheckboxChanged()">
-      <mat-button-toggle value="ONEWAY">
-        One way
-      </mat-button-toggle>
-      <mat-button-toggle value="ROUNDTRIP">
-        Round trip
-      </mat-button-toggle>
-    </mat-button-toggle-group>
-  </div>
+<div class="toggle-button-container">
+  <mat-button-toggle-group [formControl]='flightType' (change)="onReturnCheckboxChanged()">
+    <mat-button-toggle value="ONEWAY">
+      One way
+    </mat-button-toggle>
+    <mat-button-toggle value="ROUNDTRIP">
+      Round trip
+    </mat-button-toggle>
+  </mat-button-toggle-group>
+</div>
 
-  <mat-card>
+<mat-card>
 
-    <mat-autocomplete autoActiveFirstOption #originStations="matAutocomplete">
-      <mat-option *ngFor="let option of filteredOriginList | async" [value]="option">
-        {{ option }}
-      </mat-option>
-    </mat-autocomplete>
-    <mat-autocomplete autoActiveFirstOption #destinationStations="matAutocomplete">
-      <mat-option *ngFor="let option of filteredDestinationList | async" [value]="option">
-        {{ option }}
-      </mat-option>
-    </mat-autocomplete>
-    <form action="" method="post" class="form-inline" [formGroup]="searchForm">
-
-
-      <div class="form-group">
-
-        <mat-form-field>
-          <input type="text" matInput placeholder="Origin" id="origin"
-                 [matAutocomplete]="originStations" formControlName="origin">
-        </mat-form-field>
-      </div>
-
-      <div class="form-group">
-        <mat-form-field>
-          <input type="text" class="custom-control-inline" matInput placeholder="Destination" id="destination"
-                 [matAutocomplete]="destinationStations" formControlName="destination">
-        </mat-form-field>
-      </div>
+  <mat-autocomplete autoActiveFirstOption #originStations="matAutocomplete">
+    <mat-option *ngFor="let option of filteredOriginList | async" [value]="option">
+      {{ option }}
+    </mat-option>
+  </mat-autocomplete>
+  <mat-autocomplete autoActiveFirstOption #destinationStations="matAutocomplete">
+    <mat-option *ngFor="let option of filteredDestinationList | async" [value]="option">
+      {{ option }}
+    </mat-option>
+  </mat-autocomplete>
+  <form action="" method="post" class="form-inline" [formGroup]="searchForm">
 
 
-      <div class="form-group">
-        <mat-form-field>
-          <!--<input type="text" matInput placeholder="Departure date" id="originDate"-->
-          <!--#originDate>-->
-          <input matInput [matDatepicker]="originDatePicker" (click)="originDatePicker.open()"
-                 [value]="currentDateString()" placeholder="Departure date" #originDate>
-          <mat-datepicker-toggle matSuffix [for]="originDatePicker"></mat-datepicker-toggle>
-          <mat-datepicker #originDatePicker disabled="false"></mat-datepicker>
-        </mat-form-field>
-      </div>
+    <div class="form-group">
 
-      <div class="form-group">
+      <mat-form-field>
+        <input type="text" matInput placeholder="Origin" id="origin"
+               [matAutocomplete]="originStations" formControlName="origin">
+      </mat-form-field>
+    </div>
 
-        <!--<div class="form-check form-check-inline">-->
-        <!--<mat-checkbox [checked]="returnChecked" (change)="onReturnCheckboxChanged()">Return</mat-checkbox>-->
-        <!--</div>-->
+    <div class="form-group">
+      <mat-form-field>
+        <input type="text" class="custom-control-inline" matInput placeholder="Destination" id="destination"
+               [matAutocomplete]="destinationStations" formControlName="destination">
+      </mat-form-field>
+    </div>
 
-        <mat-form-field>
-          <input matInput [matDatepicker]="returnDatePicker" placeholder="Return date" [value]="currentDateString()"
-                 #returnDate (click)="returnDatePicker.open()" formControlName="returnDate">
 
-          <mat-datepicker-toggle matSuffix [for]="returnDatePicker"></mat-datepicker-toggle>
-          <mat-datepicker #returnDatePicker></mat-datepicker>
-        </mat-form-field>
-      </div>
+    <div class="form-group">
+      <mat-form-field>
+        <!--<input type="text" matInput placeholder="Departure date" id="originDate"-->
+        <!--#originDate>-->
+        <input matInput [matDatepicker]="originDatePicker" (click)="originDatePicker.open()"
+               [value]="'12/28/2018'" placeholder="Departure date" #originDate>
+        <mat-datepicker-toggle matSuffix [for]="originDatePicker"></mat-datepicker-toggle>
+        <mat-datepicker #originDatePicker disabled="false"></mat-datepicker>
+      </mat-form-field>
+    </div>
 
-      <div class="form-group position-selector-container">
+    <div class="form-group">
 
-        <mat-form-field style="width:100px">
-          <input type="text" matInput placeholder="Passenger(s)" formControlName="passengerTotal"
-                 [value]="passengerChildCount+passengerAdultCount+passengerInfantCount">
+      <!--<div class="form-check form-check-inline">-->
+      <!--<mat-checkbox [checked]="returnChecked" (change)="onReturnCheckboxChanged()">Return</mat-checkbox>-->
+      <!--</div>-->
 
-        </mat-form-field>
-        <div class="passenger-selector col-md-3">
-          <mat-card>
-            <div class="mt-2">
-              Adult ( 12+ years )
-              <div class="row no-gutters">
-                <div class="col-md-1"></div>
-                <div class="col-md-3 no-gutters">
-                  <button class="btn btn-outline-warning"
-                          (click)="passengerAdultCount = decrementCount(passengerAdultCount, 1)">
-                    -
-                  </button>
-                </div>
-                <div class="col-md-4 no-gutters">
-                  <input type="number" class="form-control" readonly [value]="passengerAdultCount">
-                </div>
-                <div class="col-md-3 no-gutters">
-                  <button class="btn btn-outline-info" (click)="passengerAdultCount = passengerAdultCount + 1;">+
-                  </button>
-                </div>
-                <div class="col-md-1"></div>
+      <mat-form-field>
+        <input matInput [matDatepicker]="returnDatePicker" placeholder="Return date" [value]="'12/28/2018'"
+               #returnDate (click)="returnDatePicker.open()" formControlName="returnDate">
+
+        <mat-datepicker-toggle matSuffix [for]="returnDatePicker"></mat-datepicker-toggle>
+        <mat-datepicker #returnDatePicker></mat-datepicker>
+      </mat-form-field>
+    </div>
+
+    <div class="form-group position-selector-container">
+
+      <mat-form-field style="width:100px">
+        <input type="text" matInput placeholder="Passenger(s)" formControlName="passengerTotal"
+               [value]="passengerChildCount+passengerAdultCount+passengerInfantCount">
+
+      </mat-form-field>
+      <div class="passenger-selector col-md-3">
+        <mat-card>
+          <div class="mt-2">
+            Adult ( 12+ years )
+            <div class="row no-gutters">
+              <div class="col-md-1"></div>
+              <div class="col-md-3 no-gutters">
+                <button class="btn btn-outline-warning"
+                        (click)="passengerAdultCount = decrementCount(passengerAdultCount, 1)">
+                  -
+                </button>
               </div>
-            </div>
-            <div class="mt-2">
-              Child ( 2-12 years )
-              <div class="row no-gutters">
-                <div class="col-md-1"></div>
-                <div class="col-md-3 no-gutters">
-                  <button class="btn btn-outline-warning"
-                          (click)="passengerChildCount = decrementCount(passengerChildCount, 0)">
-                    -
-                  </button>
-                </div>
-                <div class="col-md-4 no-gutters">
-                  <input type="number" class="form-control" readonly [value]="passengerChildCount">
-                </div>
-                <div class="col-md-3 no-gutters">
-                  <button class="btn btn-outline-info" (click)="passengerChildCount = passengerChildCount + 1">+
-                  </button>
-                </div>
-                <div class="col-md-1"></div>
+              <div class="col-md-4 no-gutters">
+                <input type="number" class="form-control" readonly [value]="passengerAdultCount">
               </div>
-            </div>
-            <div class="mt-2">
-              Infant ( < 2 years )
-              <div class="row no-gutters">
-                <div class="col-md-1"></div>
-                <div class="col-md-3 no-gutters">
-                  <button class="btn btn-outline-warning"
-                          (click)="passengerInfantCount = decrementCount(passengerInfantCount, 0)">-
-                  </button>
-                </div>
-                <div class="col-md-4 no-gutters">
-                  <input type="number" class="form-control" readonly [value]="passengerInfantCount">
-                </div>
-                <div class="col-md-3 no-gutters">
-                  <button class="btn btn-outline-info" (click)="passengerInfantCount = passengerInfantCount + 1">+
-                  </button>
-                </div>
-                <div class="col-md-1"></div>
+              <div class="col-md-3 no-gutters">
+                <button class="btn btn-outline-info" (click)="passengerAdultCount = passengerAdultCount + 1;">+
+                </button>
               </div>
+              <div class="col-md-1"></div>
             </div>
-          </mat-card>
-        </div>
+          </div>
+          <div class="mt-2">
+            Child ( 2-12 years )
+            <div class="row no-gutters">
+              <div class="col-md-1"></div>
+              <div class="col-md-3 no-gutters">
+                <button class="btn btn-outline-warning"
+                        (click)="passengerChildCount = decrementCount(passengerChildCount, 0)">
+                  -
+                </button>
+              </div>
+              <div class="col-md-4 no-gutters">
+                <input type="number" class="form-control" readonly [value]="passengerChildCount">
+              </div>
+              <div class="col-md-3 no-gutters">
+                <button class="btn btn-outline-info" (click)="passengerChildCount = passengerChildCount + 1">+
+                </button>
+              </div>
+              <div class="col-md-1"></div>
+            </div>
+          </div>
+          <div class="mt-2">
+            Infant ( < 2 years )
+            <div class="row no-gutters">
+              <div class="col-md-1"></div>
+              <div class="col-md-3 no-gutters">
+                <button class="btn btn-outline-warning"
+                        (click)="passengerInfantCount = decrementCount(passengerInfantCount, 0)">-
+                </button>
+              </div>
+              <div class="col-md-4 no-gutters">
+                <input type="number" class="form-control" readonly [value]="passengerInfantCount">
+              </div>
+              <div class="col-md-3 no-gutters">
+                <button class="btn btn-outline-info" (click)="passengerInfantCount = passengerInfantCount + 1">+
+                </button>
+              </div>
+              <div class="col-md-1"></div>
+            </div>
+          </div>
+        </mat-card>
       </div>
+    </div>
 
 
-      <button mat-raised-button class="btn btn-primary custom-control-inline bgblue"
-              style="float: right;margin-right:0px;"
-              (click)="onSearchClicked(originDate.value, returnDate.value)"
-              id="search">
-        Search
-      </button>
-    </form>
+    <button mat-raised-button class="btn btn-primary custom-control-inline bgblue"
+            style="float: right;margin-right:0px;"
+            (click)="onSearchClicked(originDate.value, returnDate.value)"
+            id="search">
+      Search
+    </button>
+  </form>
 
-  </mat-card>
+</mat-card>
 
 
 <!--<div class="passenger-selector col-md-3">-->

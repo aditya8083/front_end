@@ -1,4 +1,4 @@
-<div [ngClass]="{'!payment-component-disabled':!loaded}">
+<div [ngClass]="{'payment-component-disabled':!loaded}">
   <mat-spinner *ngIf="!loaded"></mat-spinner>
   <div class="alert alert-danger" *ngIf="!paymentService.paymentInitialized">Unable to initialize payment service.</div>
 

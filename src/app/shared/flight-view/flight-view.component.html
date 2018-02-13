@@ -1,6 +1,7 @@
 <div class="row">
-  <div class="col-sm-3">
-    <img [src]="getLogo(flight.flightCode)" style="height: auto;" class="img-fluid" [alt]="flight.flightName"/>
+
+  <div class="col-sm-2">
+    <img [src]="getLogo(flight.flightName)" style="height: auto;" class="img-fluid" [alt]="flight.flightName"/>
   </div>
   <div class="col-sm-2 d-inline-block">
     <!--<div class="row">-->
@@ -9,7 +10,12 @@
     <div>{{flight.originDepartTime}}</div>
     <small>{{flight.originDepartDate}}</small>
   </div>
-  <div class="col-sm-2 d-inline-block">
+  <div class="col-sm-1 d-inline-block">
+    <div>
+      <img src="../../assets/arrow.png" alt="" class="img-fluid">
+    </div>
+  </div>
+  <div class="col-md-2 d-inline-block">
     <!--<div class="row">-->
     <!--<small>Arrival</small>-->
     <!--</div>-->

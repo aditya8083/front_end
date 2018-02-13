@@ -51,7 +51,7 @@ export class FlightBookingReviewComponent implements OnInit {
   getTotalBookingPrice(): number {
     let amount = 0;
     for (const booking of this.flightBookingService.currentBooking) {
-      amount = amount + booking.pricePerAdult;
+      amount = amount + booking.totalPrice;
     }
     return amount;
   }

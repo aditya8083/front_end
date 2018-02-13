@@ -8,7 +8,8 @@
   <div class="mx-2">
 
     <div class="row">
-      <div class="col-md-6">
+      <div class="col-md-6 font-weight-light">
+        <h2 mat-subheader>Bio Details</h2>
         <div class="table-responsive">
           <table class="table">
             <thead>
@@ -55,14 +56,14 @@
             <tbody>
             <tr>
               <td>
-                <small>Email</small>
+                Email
               </td>
               <td>{{this.flightBookingService.passengerDetailsFormGroup.value['passengerContactDetailsGroup'].email}}
               </td>
             </tr>
             <tr>
               <td>
-                <small>Mobile Number</small>
+                Mobile Number
               </td>
               <td>
                 {{this.flightBookingService.passengerDetailsFormGroup.value['passengerContactDetailsGroup'].mobileNumber}}

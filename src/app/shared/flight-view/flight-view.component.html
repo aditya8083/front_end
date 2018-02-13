@@ -1,5 +1,5 @@
 <div class="row">
-  <div class="col-md-3">
+  <div class="col-md-2">
     <img [src]="getLogo(flight.flightName)" style="height: auto;" class="img-fluid" [alt]="flight.flightName"/>
   </div>
   <div class="col-md-2 d-inline-block">
@@ -8,6 +8,11 @@
     <!--</div>-->
     <div>{{flight.originDepartTime}}</div>
     <small>{{flight.originDepartDate}}</small>
+  </div>
+  <div class="col-md-1 d-inline-block">
+    <div>
+      <img src="../../assets/arrow.png" alt="" class="img-fluid">
+    </div>
   </div>
   <div class="col-md-2 d-inline-block">
     <!--<div class="row">-->

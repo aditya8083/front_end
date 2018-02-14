@@ -14,7 +14,7 @@ export class SearchService {
   message = '';
   loaded = true;
   passengers: PassengerCount;
-  lastSearchParams: SearchParams;
+  lastSearchParams;
 
 
   constructor(private httpClient: HttpClient) {
@@ -39,7 +39,11 @@ export class SearchService {
       returnDate: Utils.dateToISOString(returnDate)
     };
 
+
+    // have to set since SearchParams are of type string
     this.lastSearchParams = searchParams;
+    this.lastSearchParams.origin = origin;
+    this.lastSearchParams.destination = destination;
 
     url = ApiLinks.addParams(url, searchParams);
     console.log('sending request to : ' + url);

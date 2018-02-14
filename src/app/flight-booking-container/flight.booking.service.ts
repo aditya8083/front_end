@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import {FlightInfo, PassengerCount} from '../search/search.flight.model';
 import {FormGroup} from '@angular/forms';
 import {HttpClient} from '@angular/common/http';
-import {FlightDetailsRequest, FlightDetailsResponse, PartialBookingRequest} from '../models/flightDetails.model';
+import {FlightDetailsRequest, FlightDetailsResponse, PartialBookingRequest} from '../models/flight-details.model';
 import {ApiLinks} from '../shared/api-links';
 
 @Injectable()

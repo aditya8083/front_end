@@ -1,6 +1,6 @@
 import {AfterViewInit, Component, ElementRef, Input, OnDestroy, OnInit, Renderer2, ViewChild} from '@angular/core';
 import {FlightInfo} from '../search/search.flight.model';
-import {FlightDetailsResponse} from '../models/flightDetails.model';
+import {FlightDetailsResponse} from '../models/flight-details.model';
 import {Subscription} from 'rxjs/Subscription';
 import {SearchService} from '../search/search.service';
 
@@ -17,7 +17,6 @@ export class FlightDetailsComponent implements OnInit, OnDestroy {
   @ViewChild('flightDetailContent') flightDetailContent: ElementRef;
   @ViewChild('fareDetailContainer') fareDetailContainer: ElementRef;
   @ViewChild('fareDetailContent') fareDetailContent: ElementRef;
-
 
 
   loaded = false;

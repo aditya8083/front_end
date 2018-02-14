@@ -4,7 +4,7 @@ import 'rxjs/add/operator/map';
 import {FlightInfo, PassengerCount, SearchParams, SearchResponse} from './search.flight.model';
 import {ApiLinks} from '../shared/api-links';
 import {Utils} from '../shared/Utils';
-import {FlightDetailsRequest, FlightDetailsResponse} from '../models/flightDetails.model';
+import {FlightDetailsRequest, FlightDetailsResponse} from '../models/flight-details.model';
 
 @Injectable()
 export class SearchService {

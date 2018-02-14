@@ -1,0 +1,32 @@
+<div *ngIf="valid">
+  <mat-card class="mx-2 my-2 mb-5 px-5 py-5">
+    <h3 mat-card-title class="my-2 mb-5">Details for PNR : {{fbs.superPnr}}</h3>
+    <div *ngIf="!loaded">
+      <mat-spinner></mat-spinner>
+    </div>
+    <div *ngIf="loaded">
+
+      <div *ngIf="!badStatusCode">
+        <mat-accordion>
+          <mat-expansion-panel>
+            <mat-expansion-panel-header>
+              Flight Details
+            </mat-expansion-panel-header>
+            <app-flight-view [flightDetails]="fbdr.flightDetailsResponseDTOS[0]"
+                             [totalPrice]="fbdr.bookingDetails.amount"
+                             [showSeats]="false"
+                             [displaySummary]="true"></app-flight-view>
+          </mat-expansion-panel>
+        </mat-accordion>
+        <app-flight-booking-history-view [passengers]="fbdr.bookingDetails.passengers"
+                                         [contactDetails]="contactDetails"></app-flight-booking-history-view>
+      </div>
+      <div *ngIf="badStatusCode" class="alert alert-danger">
+        {{message}}
+      </div>
+    </div>
+  </mat-card>
+</div>
+<div *ngIf="!valid">
+  <div class="alert alert-danger">No PNR Supplied</div>
+</div>

@@ -69,11 +69,11 @@
 
     <div class="form-group position-selector-container">
 
-      <mat-form-field style="width:100px">
-        <input type="text" matInput placeholder="Passenger(s)" formControlName="passengerTotal"
-               [value]="passengerChildCount+passengerAdultCount+passengerInfantCount">
-
-      </mat-form-field>
+        <mat-form-field style="width:100px" readonly>
+          <input type="text" matInput placeholder="Passenger(s)" readonly formControlName="passengerTotal"
+                 [value]="passengerChildCount+passengerAdultCount+passengerInfantCount">
+          <mat-icon matSuffix svgIcon="arrow-drop-down"></mat-icon>
+        </mat-form-field>
       <div class="passenger-selector col-md-3">
         <mat-card>
           <div class="mt-2">

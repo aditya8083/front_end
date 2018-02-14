@@ -1,24 +1,35 @@
-export interface FlightDetailsResult {
+export interface FlightDetailsInfo {
   flightId: string;
   origin: string;
   destination: string;
+  isRefundable: boolean;
   originDepartDate: string;
   originDepartTime: string;
   destinationArrivalDate: string;
   destinationArrivalTime: string;
+  flightCode: string;
   flightName: string;
   flightNumber: string;
-  seatRemain: string;
-  pricePerAdult: string;
-  pricePerChild: string;
-  pricePerInfant: string;
-  refundable: boolean;
+  seatRemain: number;
+  pricePerAdult: number;
+  pricePerChild: number;
+  pricePerInfant: number;
+  originAirportName: string;
+  originTerminal: string;
+  destinationAirportName: string;
+  destinationTerminal: string;
+  isHandBaggageFlight: boolean;
+  baggageWeight: number;
+  transitVisaRequired: boolean;
 }
+
+
+
 
 export interface FlightDetailsResponseBody {
   superPnr: string;
   totalPrice: number;
-  detailResult: FlightDetailsResult[];
+  detailResult: FlightDetailsInfo[];
 }
 
 export interface FlightDetailsResponse {
@@ -41,6 +52,7 @@ export interface FlightDetailsRequest {
   flightType: string;
   doGenerate: boolean;
 }
+
 
 export interface Passenger {
   name: string;

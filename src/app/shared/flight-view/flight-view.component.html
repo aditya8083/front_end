@@ -1,7 +1,10 @@
-<div class="row">
+<div class="row" *ngIf="displaySummary">
 
   <div class="col-sm-2">
     <img [src]="getLogo(flight.flightCode)" style="height: auto;" class="img-fluid" [alt]="flight.flightName"/>
+    <div>
+      <small>{{flight.origin}} to {{flight.destination}}</small>
+    </div>
   </div>
   <div class="col-sm-2 d-inline-block">
     <!--<div class="row">-->
@@ -36,41 +39,59 @@
     </div>
     <div>
       <small>
-        {{'1 stop(s)'}}
+        {{'0 stop(s)'}}
       </small>
     </div>
   </div>
   <div class="col-sm-3 d-inline-block" style="position:relative; padding-top: 10px;">
-    <span name="price mt-2">INR : {{flight.totalPrice}}</span>
+    <span name="price mt-2">INR : {{flight.totalPrice | number}}</span>
   </div>
 </div>
-<div *ngIf="dependent">
 
-  <div *ngIf="!flightBookingService.loaded">
+
+<div *ngIf="!displayLess && flightDetails">
+  <hr>
+  <div *ngIf="!flightBookingService.loaded && dependent">
     <mat-spinner></mat-spinner>
   </div>
 
-  <div *ngIf="flightBookingService.loaded">
+  <div *ngIf="flightBookingService.loaded || !dependent">
     <div class="my-2 mx-2">
       <div class="row">
-        <div class="col-sm-2"></div>
-        <div class="col-sm-4">
+        <div class="col-sm-3">
           <div>
-            {{flightBookingService.flightDetailsResponse.response.detailResult[0].flightName}}
-            {{flightBookingService.flightDetailsResponse.response.detailResult[0].flightNumber}}
+            {{flightDetails.flightName}}
+            {{flightDetails.flightNumber}}
           </div>
           <div>
             <small>Flight number</small>
           </div>
         </div>
+        <div class="col-sm-3">
+          <div>
+            {{flightDetails.originTerminal}}
+          </div>
 
-        <div class="col-sm-4">
+          <div>
+            <small>{{flightDetails.originAirportName}}</small>
+          </div>
+        </div>
+        <div class="col-sm-3">
+          <div>
+            {{flightDetails.destinationTerminal}}
+          </div>
+
+          <div>
+            <small>{{flightDetails.destinationAirportName}}</small>
+          </div>
+        </div>
+        <div class="col-sm-3" *ngIf="showSeats">
           <div
             [ngClass]="{
-            'text-success': flightBookingService.flightDetailsResponse.response.detailResult[0].seatRemain > 10,
-             'text-danger':flightBookingService.flightDetailsResponse.response.detailResult[0].seatRemain <= 10
+            'text-success': flightDetails.seatRemain > 10,
+             'text-danger':flightDetails.seatRemain <= 10
              }">
-            {{ flightBookingService.flightDetailsResponse.response.detailResult[0].seatRemain }}
+            {{ flightDetails.seatRemain }}
           </div>
           <div>
             <small>Seats Remaining</small>
@@ -83,7 +104,7 @@
     <div class="row">
       <div class="col-sm-3">
         <div>
-          {{ flightBookingService.flightDetailsResponse.response.detailResult[0].pricePerAdult }}
+          {{ flightDetails.pricePerAdult | number}}
         </div>
         <div>
           <small>
@@ -94,7 +115,7 @@
 
       <div class="col-sm-3">
         <div>
-          {{ flightBookingService.flightDetailsResponse.response.detailResult[0].pricePerChild }}
+          {{ flightDetails.pricePerChild | number}}
         </div>
         <div>
           <small>
@@ -104,7 +125,7 @@
       </div>
       <div class="col-sm-3">
         <div>
-          {{ flightBookingService.flightDetailsResponse.response.detailResult[0].pricePerInfant }}
+          {{ flightDetails.pricePerInfant | number}}
         </div>
         <div>
           <small>
@@ -115,9 +136,9 @@
       <div class="col-sm-3">
         <div>
           <p class="text-success"
-             *ngIf="flightBookingService.flightDetailsResponse.response.detailResult[0].refundable">Refundable</p>
+             *ngIf="flightDetails.isRefundable">Refundable</p>
           <p class="text-danger"
-             *ngIf="!flightBookingService.flightDetailsResponse.response.detailResult[0].refundable">Non
+             *ngIf="!flightDetails.isRefundable">Non
             Refundable</p>
         </div>
       </div>

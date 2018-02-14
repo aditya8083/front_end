@@ -9,6 +9,7 @@ export class ApiLinks {
   public static flightDetailsBase = 'http://localhost:8083/flight/detail';
   public static flightCreateBooking = 'http://localhost:8083/booking/createBooking';
   public static makePaymentUrl = 'http://localhost:8083/payment/card/makePayment';
+  public static bookingHistoryBaseUrl = 'http://demo7449096.mockable.io/booking/superPnr';
 
   public static addParams(url: string, map: Object) {
     if (Object.keys(map).length > 0) {

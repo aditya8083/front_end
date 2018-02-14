@@ -63,10 +63,11 @@
       <mat-spinner></mat-spinner>
     </div>
     <div *ngIf="loaded">
+      <!-- display flight summary-->
         <app-flight-view [flight]="flight"></app-flight-view>
       <hr>
       <div class="row">
-        <div class="col-md-4">
+        <div class="col-sm-3">
           <div>
             {{flightDetailsResponse.response.detailResult[0].flightName}}
             {{flightDetailsResponse.response.detailResult[0].flightNumber}}
@@ -75,8 +76,25 @@
             <small>Flight number</small>
           </div>
         </div>
+        <div class="col-sm-3">
+          <div>
+            {{flightDetailsResponse.response.detailResult[0].originTerminal}}
+          </div>
 
-        <div class="col-md-4">
+          <div>
+            <small>{{flightDetailsResponse.response.detailResult[0].originAirportName}}</small>
+          </div>
+        </div>
+        <div class="col-sm-3">
+          <div>
+            {{flightDetailsResponse.response.detailResult[0].destinationTerminal}}
+          </div>
+
+          <div>
+            <small>{{flightDetailsResponse.response.detailResult[0].destinationAirportName}}</small>
+          </div>
+        </div>
+        <div class="col-sm-3">
           <div
             [ngClass]="{
             'text-success': flightDetailsResponse.response.detailResult[0].seatRemain > 10,

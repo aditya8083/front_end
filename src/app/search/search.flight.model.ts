@@ -10,11 +10,9 @@ export interface FlightInfo {
   flightName: string;
   flightNumber: string;
   pricePerAdult: number;
-  baggageWeight: string;
+  baggageWeight: number;
   transitVisaRequired: boolean;
-  refundable: boolean;
-  handBaggageFlight: boolean;
-  totalPrice: boolean;
+  totalPrice?: number;
 }
 
 

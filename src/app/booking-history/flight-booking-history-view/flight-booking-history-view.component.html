@@ -21,24 +21,18 @@
                 Name
               </td>
               <td>
-                Gender
-              </td>
-              <td>
                 Age year(s)
               </td>
             </tr>
             </thead>
             <tbody>
             <tr
-              *ngFor="let passengerBio of flightBookingService.passengerDetailsFormGroup.value['passengerBioFormArray']; let i = index">
+              *ngFor="let passengerBio of passengers; let i = index">
               <td>
                 {{i + 1}}.
               </td>
               <td>
-                {{passengerBio.title}} {{passengerBio.firstName}} {{passengerBio.middleName}} {{passengerBio.lastName}}
-              </td>
-              <td>
-                {{passengerBio.gender}}
+                {{passengerBio.name}}
               </td>
               <td>
                 {{passengerBio.age}}
@@ -58,7 +52,7 @@
               <td>
                 Email
               </td>
-              <td>{{this.flightBookingService.passengerDetailsFormGroup.value['passengerContactDetailsGroup'].email}}
+              <td>{{contactDetails.email}}
               </td>
             </tr>
             <tr>
@@ -66,7 +60,7 @@
                 Mobile Number
               </td>
               <td>
-                {{this.flightBookingService.passengerDetailsFormGroup.value['passengerContactDetailsGroup'].mobileNumber}}
+                {{contactDetails.mobileNumber}}
               </td>
             </tr>
             </tbody>
@@ -77,12 +71,6 @@
   </div>
 </mat-list>
 
-<p>
-  You'll be paying a total of {{currency}} : {{getTotalBookingPrice() | number}}
-</p>
 
+<div class="my-2"></div>
 
-<div class="my-2">
-  <button mat-raised-button class="btn-danger" matStepperPrevious>Back</button>
-  <button mat-raised-button class="btn-primary" matStepperNext (click)="confirm()">Confirm</button>
-</div>

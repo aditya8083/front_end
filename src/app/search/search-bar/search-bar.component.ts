@@ -3,6 +3,8 @@ import {SearchService} from '../search.service';
 import {FormBuilder, FormControl, FormGroup} from '@angular/forms';
 import {Observable} from 'rxjs/Observable';
 import {Subscription} from 'rxjs/Subscription';
+import {DomSanitizer} from '@angular/platform-browser';
+import {MatIconRegistry} from '@angular/material';
 
 @Component({
   selector: 'app-search-bar',
@@ -27,11 +29,17 @@ export class SearchBarComponent implements OnInit, OnDestroy {
   passengerInfantCount = 0;
   passengerCountSubscription: Subscription;
 
-  constructor(private searchService: SearchService, private fb: FormBuilder) {
+  constructor(private searchService: SearchService, private fb: FormBuilder,
+              iconRegistry: MatIconRegistry, sanitizer: DomSanitizer) {
     this.createForm();
     this.searchForm.controls.origin.setValue('BLR');
     this.searchForm.controls.destination.setValue('DEL');
     this.flightType.setValue('ONEWAY');
+
+    // register icon
+    iconRegistry.addSvgIcon(
+      'arrow-drop-down',
+      sanitizer.bypassSecurityTrustResourceUrl('assets/ic_arrow_drop_down_black_24px.svg'));
   }
 
 

@@ -19,7 +19,7 @@
   </mat-autocomplete>
   <mat-autocomplete autoActiveFirstOption #destinationStations="matAutocomplete" [displayWith]="displayFunction">
     <mat-option *ngFor="let option of filteredDestinationList | async" [value]="option">
-      {{ option }}
+      {{ option.name + ' (' + option.code + ')'}}
     </mat-option>
   </mat-autocomplete>
   <form action="" method="post" class="form-inline" [formGroup]="searchForm">

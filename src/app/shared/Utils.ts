@@ -12,7 +12,7 @@ export class Utils {
     } else if (airline === 'GA') {
       return 'https://skytraxratings.com/wp-content/uploads/2017/04/GA_900.png';
     } else if (airline === 'JT') {
-      return 'http://2.bp.blogspot.com/-HRJR3atkSSA/U-tzvTo752I/AAAAAAAADTM/b-emtipDlT0/s1600/Logo%2BLion-Air.png';
+      return 'assets/Logo+Lion-Air.png';
     } else {
       return 'https://en.tiket.com/assets_version/cardamom/dist/images/tiketcom.png';
     }

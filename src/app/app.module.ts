@@ -38,7 +38,7 @@ const appRoutes: Routes = [
   {path: 'booking/flight', component: FlightBookingContainerComponent},
   {path: 'confirmed/flight', component: FlightBookingResultComponent},
   {path: 'history/flight/email', component: FlightEmailBookingHistoryComponent},
-  {path: 'history/flight/superPnr', component: FlightSuperpnrBookingHistoryComponent}
+  {path: 'history/flight/superPnr/:superPnr', component: FlightSuperpnrBookingHistoryComponent}
 ];
 
 @NgModule({

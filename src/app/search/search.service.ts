@@ -42,8 +42,7 @@ export class SearchService {
 
     // have to set since SearchParams are of type string
     this.lastSearchParams = searchParams;
-    this.lastSearchParams.origin = origin;
-    this.lastSearchParams.destination = destination;
+
 
     url = ApiLinks.addParams(url, searchParams);
     console.log('sending request to : ' + url);
@@ -62,7 +61,8 @@ export class SearchService {
         this.loaded = true;
         this.message = 'Can\'t connect to search Micro Service.';
       });
-
+    this.lastSearchParams.origin = origin;
+    this.lastSearchParams.destination = destination;
   }
 
   fetchDetails(flight: FlightInfo) {

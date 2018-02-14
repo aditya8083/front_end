@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {FlightBookingHistoryService} from '../flight-booking-history.service';
 import {ContactDetails, FlightBookingDetailsResponse} from '../../models/booking-details.model';
+import {ActivatedRoute} from '@angular/router';
 
 @Component({
   selector: 'app-flight-superpnr-booking-history',
@@ -16,7 +17,8 @@ export class FlightSuperpnrBookingHistoryComponent implements OnInit {
   fbdr: FlightBookingDetailsResponse;
   contactDetails: ContactDetails;
 
-  constructor(protected fbs: FlightBookingHistoryService) {
+
+  constructor(protected fbs: FlightBookingHistoryService, protected route: ActivatedRoute) {
   }
 
   ngOnInit() {
@@ -39,6 +41,7 @@ export class FlightSuperpnrBookingHistoryComponent implements OnInit {
             this.loaded = true;
           });
     }
+    // else if (this.route.snapshot.params[''])
   }
 
 

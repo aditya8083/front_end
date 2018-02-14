@@ -9,7 +9,8 @@
       <ul class="navbar-nav ml-auto">
 
       </ul>
-      <button class="btn btn-outline-success my-2 mr-0 my-sm-0">Login</button>
+      <input type="text" style="width: 250px;" placeholder="PNR" class="form-control custom-control-inline" #superPnr>
+      <button class="btn btn-outline-success my-2 mr-0 my-sm-0" (click)="checkPnrStatus(superPnr.value)">Check Status</button>
     </div>
   </nav>
   <nav class="nav nav-pills flex-column flex-sm-row">

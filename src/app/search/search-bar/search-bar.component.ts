@@ -43,8 +43,8 @@ export class SearchBarComponent implements OnInit, OnDestroy {
               private snackBar: MatSnackBar) {
     this.createForm();
     // temporary values
-    this.searchForm.controls.origin.setValue(this.stationList[3]);
-    this.searchForm.controls.destination.setValue(this.stationList[4]);
+    this.searchForm.controls.origin.setValue(this.stationList[0]);
+    this.searchForm.controls.destination.setValue(this.stationList[1]);
     this.flightType.setValue('ONEWAY');
 
     // register icon
@@ -81,6 +81,7 @@ export class SearchBarComponent implements OnInit, OnDestroy {
 
     // load last state of component
     if (this.searchService.passengers) {
+      console.log('Reloading old state from service');
       this.passengerAdultCount = this.searchService.passengers.adult;
       this.passengerChildCount = this.searchService.passengers.child;
       this.passengerInfantCount = this.searchService.passengers.infant;

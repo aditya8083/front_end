@@ -16,33 +16,49 @@ export class FlightSuperpnrBookingHistoryComponent implements OnInit {
   message: string;
   fbdr: FlightBookingDetailsResponse;
   contactDetails: ContactDetails;
-
+  superPnr: string;
 
   constructor(protected fbs: FlightBookingHistoryService, protected route: ActivatedRoute) {
   }
 
   ngOnInit() {
-    if (this.fbs.superPnr) {
-      this.valid = true;
-      this.fbs.fetchBookingDetailsByPnr(this.fbs.superPnr)
-        .subscribe(
-          data => {
-            this.fbdr = <FlightBookingDetailsResponse> data;
-            // set contact details to send to history view
-            this.contactDetails = {
-              email: this.fbdr.bookingDetails.bookingEmail,
-              mobileNumber: this.fbdr.bookingDetails.phoneNumber
-            };
-            this.loaded = true;
-          },
-          error2 => {
-            this.badStatusCode = true;
-            this.message = 'Unable to connect to micro service';
-            this.loaded = true;
-          });
-    }
-    // else if (this.route.snapshot.params[''])
+    this.valid = true;
+    this.route.params.subscribe(
+      params => {
+        this.superPnr = params['superPnr'];
+        console.log(this.superPnr);
+        if (!this.superPnr) {
+          this.badStatusCode = true;
+          this.message = 'Please Enter a valid PNR';
+        }
+        this.loaded = false;
+        this.reloadStuff();
+      }
+    );
   }
+
+  reloadStuff() {
+    this.loaded = false;
+    this.badStatusCode = false;
+
+    this.fbs.fetchBookingDetailsByPnr(this.superPnr).subscribe(
+      data => {
+        this.fbdr = <FlightBookingDetailsResponse>data;
+        this.contactDetails = {
+          email: this.fbdr.bookingDetails.bookingEmail,
+          mobileNumber: this.fbdr.bookingDetails.phoneNumber
+        };
+        this.loaded = true;
+        this.badStatusCode = false;
+      },
+      error2 => {
+        this.badStatusCode = true;
+        this.message = "Can't connect to micro service";
+      }
+    );
+  }
+
+
 
 
 }

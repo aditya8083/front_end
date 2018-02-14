@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -8,9 +9,13 @@ import { Component, OnInit } from '@angular/core';
 export class HeaderComponent implements OnInit {
 
 
-  constructor() { }
+  constructor(protected router: Router) {
+  }
 
   ngOnInit() {
   }
 
+  checkPnrStatus(value: string) {
+    this.router.navigate(['history', 'flight', 'superPnr', value]);
+  }
 }

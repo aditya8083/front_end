@@ -45,4 +45,8 @@ export interface PassengerCount {
   infant: number;
 }
 
+export interface Airport {
+  name: string;
+  code: string;
+}
 

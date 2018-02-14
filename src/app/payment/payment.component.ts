@@ -6,6 +6,7 @@ import {BookingResultServiceResponse} from '../models/flight-booking-result.mode
 import {BookingResultService} from '../flight-booking-result/booking-result-service.service';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {CardDetails} from './payment.model';
+import {Properties} from '../shared/properties';
 
 @Component({
   selector: 'app-payment',
@@ -18,6 +19,7 @@ export class PaymentComponent implements OnInit, OnDestroy {
   paymentResponseSubscription: Subscription;
   cardInformationForm: FormGroup;
   loaded: boolean;
+  currency = Properties.currency;
 
   constructor(private router: Router,
               protected paymentService: PaymentService,

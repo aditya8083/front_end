@@ -19,7 +19,7 @@ export interface PaymentRequest {
 
 export interface PaymentComponentInput {
   superPnr: string;
-  amount?: string;
+  amount?: number;
   providerId: string;
   customerId: string;
 }

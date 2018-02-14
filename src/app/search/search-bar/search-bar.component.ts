@@ -4,7 +4,10 @@ import {FormBuilder, FormControl, FormGroup} from '@angular/forms';
 import {Observable} from 'rxjs/Observable';
 import {Subscription} from 'rxjs/Subscription';
 import {DomSanitizer} from '@angular/platform-browser';
-import {MatIconRegistry} from '@angular/material';
+import {MatIconRegistry, MatSnackBar} from '@angular/material';
+import {Airport} from '../search.flight.model';
+
+// import {startWith} from 'rxjs/Operator/startWith';
 
 @Component({
   selector: 'app-search-bar',
@@ -16,9 +19,15 @@ export class SearchBarComponent implements OnInit, OnDestroy {
 
   returnChecked = false;
   searchForm: FormGroup;
-  stationList = ['DEL', 'BLR', 'HLD', 'AUS', 'DDN'];
-  filteredOriginList: Observable<string[]>;
-  filteredDestinationList: Observable<string[]>;
+  stationList: Airport[] = [
+    {name: 'Bengaluru', code: 'BLR'},
+    {name: 'Delhi', code: 'DEL'},
+    {name: 'Mumbai', code: 'BOM'},
+    {name: 'Jakarta', code: 'JKT'},
+    {name: 'Bali', code: 'DPS'}
+  ];
+  filteredOriginList: Observable<Airport[]>;
+  filteredDestinationList: Observable<Airport[]>;
   flightType: FormControl = new FormControl();
 
   oneway: FormControl = new FormControl();
@@ -30,10 +39,12 @@ export class SearchBarComponent implements OnInit, OnDestroy {
   passengerCountSubscription: Subscription;
 
   constructor(private searchService: SearchService, private fb: FormBuilder,
-              iconRegistry: MatIconRegistry, sanitizer: DomSanitizer) {
+              iconRegistry: MatIconRegistry, sanitizer: DomSanitizer,
+              private snackBar: MatSnackBar) {
     this.createForm();
-    this.searchForm.controls.origin.setValue('BLR');
-    this.searchForm.controls.destination.setValue('DEL');
+    // temporary values
+    this.searchForm.controls.origin.setValue(this.stationList[3]);
+    this.searchForm.controls.destination.setValue(this.stationList[4]);
     this.flightType.setValue('ONEWAY');
 
     // register icon
@@ -54,16 +65,18 @@ export class SearchBarComponent implements OnInit, OnDestroy {
 
   }
 
-  filter(val: string): string[] {
+  filter(val: string): Airport[] {
     return this.stationList.filter(option =>
-      option.toLowerCase().indexOf(val.toLowerCase()) === 0);
+      option.name.toLowerCase().includes(val.toLowerCase()) || option.code.toLowerCase().includes(val.toLowerCase()));
   }
 
   ngOnInit() {
     this.filteredOriginList = this.searchForm.controls.origin.valueChanges
-      .map(val => this.filter(val));
+      .map(value => typeof value === 'string' ? value : value.name)
+      .map(name => name ? this.filter(name) : this.stationList.slice());
     this.filteredDestinationList = this.searchForm.controls.destination.valueChanges
-      .map(val => this.filter(val));
+      .map(value => typeof value === 'string' ? value : value.name)
+      .map(name => name ? this.filter(name) : this.stationList.slice());
 
 
     // load last state of component
@@ -82,6 +95,14 @@ export class SearchBarComponent implements OnInit, OnDestroy {
   onSearchClicked(originDate: any, returnDate: any) {
     const origin = this.searchForm.get('origin').value;
     const destination = this.searchForm.get('destination').value;
+
+    if (origin.code === undefined || destination.code === undefined) {
+      this.snackBar.open('Please select a valid origin / destination from list.', 'Will do sir', {
+        duration: 5000
+      });
+      return;
+    }
+
     console.log('date value is: ' + this.searchForm.controls.originDate.value);
     originDate = new Date(Date.parse(originDate));
     returnDate = new Date(Date.parse(returnDate));
@@ -92,7 +113,7 @@ export class SearchBarComponent implements OnInit, OnDestroy {
 
     // call api from search service
     this.searchService.searchFor(origin, destination, originDate, returnDate, this.flightType.value);
-    console.log('Searching for flights from ' + origin + ' to ' + destination);
+    console.log('Searching for flights from ' + origin.name + ' to ' + destination.name);
   }
 
 
@@ -112,6 +133,10 @@ export class SearchBarComponent implements OnInit, OnDestroy {
     } else {
       this.searchForm.controls['returnDate'].disable();
     }
+  }
+
+  displayFunction(airport: Airport) {
+    return airport.name + ' (' + airport.code + ')';
   }
 
   ngOnDestroy() {

@@ -25,7 +25,9 @@ export class FlightViewComponent implements OnInit {
 
   ngOnInit() {
     if (this.dependent) {
-      this.flightDetails = this.flightBookingService.flightDetailsResponse.response.detailResult[0];
+      this.flightBookingService.loadedEmitter.subscribe(loaded => {
+        this.flightDetails = this.flightBookingService.flightDetailsResponse.response.detailResult[0];
+      });
       // this.displayLess = false;
     } else if (this.flightDetails != null) {
       // this.displayLess = false;

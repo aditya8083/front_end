@@ -8,7 +8,7 @@
       </div>
       <mat-card class="my-1 mx-2">
         <div *ngFor="let flight of flightBookingService.currentBooking">
-          <app-flight-view [flight]="flight" [dependent]="true"></app-flight-view>
+          <app-flight-view [flight]="flight" [dependent]="true" [displayLess]="false"></app-flight-view>
         </div>
       </mat-card>
       <app-passenger-details></app-passenger-details>
@@ -37,10 +37,10 @@
       </div>
       <mat-card class="my-1 mx-2">
         <div *ngFor="let flight of flightBookingService.currentBooking">
-          <app-flight-view [flight]="flight" [dependent]="true"></app-flight-view>
+          <app-flight-view  [flight]="flight" [dependent]="true"></app-flight-view>
         </div>
       </mat-card>
-      <app-payment></app-payment>
+      <app-payment style="margin-top: 50px;"></app-payment>
     </mat-step>
 
   </mat-horizontal-stepper>

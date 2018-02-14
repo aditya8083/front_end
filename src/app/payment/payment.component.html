@@ -4,7 +4,7 @@
 
   <div *ngIf="paymentService.paymentInitialized">
     <form [formGroup]="cardInformationForm">
-      <h4>Payment Details</h4>
+      <h4 class="my-5">Payment Details</h4>
       <div class="row">
         <div class="col-md-3"></div>
         <div class="col-md-6">
@@ -33,6 +33,8 @@
 
           </mat-card>
         </div>
+      </div>
+      <div class="my-3"><b>You'll be paying a total of {{ currency }} : {{ paymentService.paymentComponentInput.amount | number}}</b>
       </div>
       <div class="my-2">
         <button mat-raised-button class="btn-danger" (click)="cancel()" #cancelButton>Cancel</button>

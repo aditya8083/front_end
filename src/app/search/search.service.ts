@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import 'rxjs/add/operator/map';
-import {FlightInfo, PassengerCount, SearchParams, SearchResponse} from './search.flight.model';
+import {Airport, FlightInfo, PassengerCount, SearchParams, SearchResponse} from './search.flight.model';
 import {ApiLinks} from '../shared/api-links';
 import {Utils} from '../shared/Utils';
 import {FlightDetailsRequest, FlightDetailsResponse} from '../models/flight-details.model';
@@ -21,7 +21,7 @@ export class SearchService {
   }
 
 
-  searchFor(origin: string, destination: string, originDate: Date, returnDate: Date, flightType: string) {
+  searchFor(origin: Airport, destination: Airport, originDate: Date, returnDate: Date, flightType: string) {
     this.loaded = false;
     let url = ApiLinks.searchBase;
     this.badStatusCode = false;
@@ -29,8 +29,8 @@ export class SearchService {
     this.searchResultList.length = 0; // clear old search results
 
     const searchParams: SearchParams = {
-      origin: origin,
-      destination: destination,
+      origin: origin.code,
+      destination: destination.code,
       originDepartDate: Utils.dateToISOString(originDate),
       adults: this.passengers.adult,
       children: this.passengers.child,

@@ -9,6 +9,10 @@ export class Utils {
       return 'https://logos-download.com/wp-content/uploads/2016/04/Air_India_logo_logotype_emblem.png';
     } else if (airline === 'IN') {
       return 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/69/IndiGo_Airlines_logo.svg/2000px-IndiGo_Airlines_logo.svg.png';
+    } else if (airline === 'GA') {
+      return 'https://skytraxratings.com/wp-content/uploads/2017/04/GA_900.png';
+    } else if (airline === 'JT') {
+      return 'http://2.bp.blogspot.com/-HRJR3atkSSA/U-tzvTo752I/AAAAAAAADTM/b-emtipDlT0/s1600/Logo%2BLion-Air.png';
     } else {
       return 'https://en.tiket.com/assets_version/cardamom/dist/images/tiketcom.png';
     }

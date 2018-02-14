@@ -12,12 +12,12 @@
 
 <mat-card>
 
-  <mat-autocomplete autoActiveFirstOption #originStations="matAutocomplete">
+  <mat-autocomplete autoActiveFirstOption #originStations="matAutocomplete" [displayWith]="displayFunction">
     <mat-option *ngFor="let option of filteredOriginList | async" [value]="option">
-      {{ option }}
+      {{ option.name + ' (' + option.code + ')'}}
     </mat-option>
   </mat-autocomplete>
-  <mat-autocomplete autoActiveFirstOption #destinationStations="matAutocomplete">
+  <mat-autocomplete autoActiveFirstOption #destinationStations="matAutocomplete" [displayWith]="displayFunction">
     <mat-option *ngFor="let option of filteredDestinationList | async" [value]="option">
       {{ option }}
     </mat-option>
@@ -46,7 +46,7 @@
         <!--<input type="text" matInput placeholder="Departure date" id="originDate"-->
         <!--#originDate>-->
         <input matInput [matDatepicker]="originDatePicker" (click)="originDatePicker.open()"
-               [value]="'2018-12-28'" placeholder="Departure date" #originDate>
+               [value]="currentDateString()" placeholder="Departure date" #originDate>
         <mat-datepicker-toggle matSuffix [for]="originDatePicker"></mat-datepicker-toggle>
         <mat-datepicker #originDatePicker disabled="false"></mat-datepicker>
       </mat-form-field>
@@ -59,7 +59,7 @@
       <!--</div>-->
 
       <mat-form-field>
-        <input matInput [matDatepicker]="returnDatePicker" placeholder="Return date" [value]="'2018-12-28'"
+        <input matInput [matDatepicker]="returnDatePicker" placeholder="Return date" [value]="currentDateString()"
                #returnDate (click)="returnDatePicker.open()" formControlName="returnDate">
 
         <mat-datepicker-toggle matSuffix [for]="returnDatePicker"></mat-datepicker-toggle>

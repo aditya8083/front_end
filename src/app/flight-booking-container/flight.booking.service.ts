@@ -1,4 +1,4 @@
-import {Injectable} from '@angular/core';
+import {EventEmitter, Injectable, Output} from '@angular/core';
 import {FlightInfo, PassengerCount} from '../search/search.flight.model';
 import {FormGroup} from '@angular/forms';
 import {HttpClient} from '@angular/common/http';
@@ -18,6 +18,8 @@ export class FlightBookingService {
   loaded = false;
   // details response for flight-details
   flightDetailsResponse: FlightDetailsResponse;
+
+  @Output() loadedEmitter = new EventEmitter<boolean>();
 
   constructor(private httpClient: HttpClient) {
   }
@@ -57,6 +59,7 @@ export class FlightBookingService {
       .subscribe(data => {
         this.flightDetailsResponse = <FlightDetailsResponse> data;
         this.loaded = true;
+        this.loadedEmitter.emit(true);
       });
   }
 

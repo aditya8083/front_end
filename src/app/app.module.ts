@@ -14,7 +14,7 @@ import {SearchResultComponent} from './search/search-result/search-result.compon
 import {SearchBarComponent} from './search/search-bar/search-bar.component';
 import {SearchService} from './search/search.service';
 import {NoopAnimationsModule} from '@angular/platform-browser/animations';
-import {MatAutocompleteModule, MatButtonModule, MatButtonToggleModule, MatCardModule, MatCheckboxModule, MatDatepickerModule, MatDividerModule, MatExpansionModule, MatIconModule, MatInputModule, MatListModule, MatNativeDateModule, MatProgressSpinnerModule, MatSelectModule, MatStepperModule, MatTableModule, MatTabsModule} from '@angular/material';
+import {MatAutocompleteModule, MatButtonModule, MatButtonToggleModule, MatCardModule, MatCheckboxModule, MatDatepickerModule, MatDividerModule, MatExpansionModule, MatIconModule, MatInputModule, MatListModule, MatNativeDateModule, MatProgressSpinnerModule, MatSelectModule, MatSnackBar, MatSnackBarModule, MatStepperModule, MatTableModule, MatTabsModule} from '@angular/material';
 import {AuthComponent} from './auth/auth.component';
 import {RouterModule, Routes} from '@angular/router';
 import { FlightBookingContainerComponent } from './flight-booking-container/flight-booking-container.component';
@@ -86,7 +86,8 @@ const appRoutes: Routes = [
     MatListModule,
     MatProgressSpinnerModule,
     MatExpansionModule,
-    MatIconModule
+    MatIconModule,
+    MatSnackBarModule
   ],
   providers: [SearchService, FlightBookingService, PaymentService, BookingResultService, CleanupService, FlightBookingHistoryService],
   bootstrap: [AppComponent]

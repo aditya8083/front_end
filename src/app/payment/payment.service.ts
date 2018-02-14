@@ -9,6 +9,8 @@ import {BookingResultServiceResponse} from '../models/flight-booking-result.mode
 export class PaymentService {
   paymentComponentInput: PaymentComponentInput;
   paymentInitialized = false;
+
+
   constructor(private httpClient: HttpClient,
               private flightBookingResultService: BookingResultService) {
   }

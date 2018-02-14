@@ -67,7 +67,8 @@ export class FlightBookingReviewComponent implements OnInit {
     this.paymentService.paymentComponentInput = {
       superPnr: this.flightBookingService.flightDetailsResponse.response.superPnr,
       customerId: this.flightBookingService.passengerDetailsFormGroup.value['passengerContactDetailsGroup'].email,
-      providerId: 'ABC'
+      providerId: 'ABC',
+      amount: this.getTotalBookingPrice()
     };
     this.paymentService.paymentInitialized = true;
     console.log('initializing payment service');

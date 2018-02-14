@@ -1,6 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {FlightInfo} from '../../search/search.flight.model';
-import {FlightDetailsInfo, FlightDetailsResponse} from '../../models/flight-details.model';
+import {FlightDetailsInfo} from '../../models/flight-details.model';
 import {FlightBookingService} from '../../flight-booking-container/flight.booking.service';
 import {Utils} from '../Utils';
 
@@ -21,12 +21,15 @@ export class FlightViewComponent implements OnInit {
   @Input() showSeats = true;
   @Input() displaySummary = true;
 
-  constructor(protected flightBookingService: FlightBookingService) { }
+  constructor(protected flightBookingService: FlightBookingService) {
+  }
 
   ngOnInit() {
     if (this.dependent) {
       this.flightBookingService.loadedEmitter.subscribe(loaded => {
-        this.flightDetails = this.flightBookingService.flightDetailsResponse.response.detailResult[0];
+        if (loaded) {
+          this.flightDetails = this.flightBookingService.flightDetailsResponse.response.detailResult[0];
+        }
       });
       // this.displayLess = false;
     } else if (this.flightDetails != null) {
